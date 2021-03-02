@@ -1,0 +1,38 @@
+.auto-fill {
+    position: relative;
+    font-size: 16px;
+    &__input-container {
+        display: relative;
+    }
+
+    &__input-container__loader {
+        height: 16px;
+        position: absolute;
+        top: 51%;
+        transform: translateY(-50%);
+        right: 18px;
+    }
+
+    &__list {
+        list-style-type: none;
+        position: absolute;
+        left: 0;
+        background: white;
+        z-index: 10;
+        width: max-content;
+        // max-width: 10rem;
+        border: 1px solid var(--color-lines-primary);
+
+        &__item {
+            padding: 10px;
+            border-bottom: 1px solid var(--color-lines-primary);
+            
+            &:hover{
+                cursor: pointer;
+                background-color: var(--color-background-tertiary);
+            }
+        }
+    }
+
+    
+}

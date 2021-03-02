@@ -1,0 +1,92 @@
+<section>
+    <table class="table table-borderless">
+        <tr *ngIf="monday.length > 0">
+            <td width="150px"> <b>Monday</b> </td>
+            <td>
+                <table  *ngIf="monday.length > 0; else closed">
+                    <tr *ngFor="let availability of monday">
+                        <td *ngIf="!availability.markedAsClose; else closed " class="pt-0">
+                            {{getTimeStr(availability)}}
+                        </td>
+                        
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr *ngIf="tuesday.length > 0">
+            <td><b>Tuesday</b></td>
+            <td>
+                <table  *ngIf="tuesday.length > 0 ; else closed">
+                    <tr *ngFor="let availability of tuesday">
+                        <td *ngIf="!availability.markedAsClose;else closed" class="pt-0">
+                            {{getTimeStr(availability)}}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr  *ngIf="wednesday.length > 0">
+            <td><b>Wednesday</b></td>
+            <td>
+                <table  *ngIf="wednesday.length > 0; else closed">
+                    <tr *ngFor="let availability of wednesday">
+                        <td *ngIf="!availability.markedAsClose; else closed " class="pt-0">
+                            {{getTimeStr(availability)}}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr *ngIf="thursday.length > 0">
+            <td><b>Thursday</b></td>
+            <td>
+                <table  *ngIf="thursday.length > 0; else closed">
+                    <tr *ngFor="let availability of thursday">
+                        <td *ngIf="!availability.markedAsClose;else closed  " class="pt-0">
+                            {{getTimeStr(availability)}}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr *ngIf="friday.length > 0">
+            <td><b>Friday</b></td>
+            <td>
+                <table  *ngIf="friday.length > 0; else closed">
+                    <tr *ngFor="let availability of friday">
+                        <td *ngIf="!availability.markedAsClose; else closed " class="pt-0">
+                            {{getTimeStr(availability)}}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr *ngIf="saturday.length > 0;">
+            <td><b>Saturday</b></td>
+            <td>
+                <table  *ngIf="saturday.length > 0; else closed">
+                    <tr *ngFor="let availability of saturday">
+                        <td *ngIf="!availability.markedAsClose;else closed  " class="pt-0">
+                            {{getTimeStr(availability)}}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr *ngIf="sunday.length > 0;">
+            <td><b>Sunday</b></td>
+            <td>
+                <table  *ngIf="sunday.length > 0; else closed">
+                    <tr *ngFor="let availability of sunday">
+                        <td *ngIf="!availability.markedAsClose; else closed " class="pt-0">
+                            {{getTimeStr(availability)}}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</section>
+<ng-template #closed>
+    <div class="pt-0 plb-12"> Closed </div>
+</ng-template>

@@ -1,0 +1,35 @@
+#input_container {
+    position:relative;
+    padding:0 0 0 24px;
+ 
+      height: 40px;
+ width: 432px;
+ left: 0px;
+ top: 0px;
+
+ }
+ .form-control{
+    border-radius:0px;
+    border: 2px solid rgba(242, 242, 242, 1);
+    height:40px;
+}
+ #input_img {
+     position:absolute;
+
+ 
+  bottom: 9px;
+  right: 15px;
+     width:24px;
+     height:24px;
+ }
+ .black-tablename{
+    outline: none;
+    color:black;
+    font-weight:600;
+    cursor: pointer; 
+    text-transform: capitalize;
+ }
+ input[type=checkbox]{
+    height:16px;
+    width:16px;
+ }

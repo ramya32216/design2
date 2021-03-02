@@ -1,0 +1,10 @@
+<span class="float-right">
+    <span > Items per page </span>
+    <span>
+        <select name="" id="" (change)="handleChange($event.target.value)" style="background-color: var(--color-background-secondary);
+        font-weight: 700;border:0;height:40px;outline:0;padding: 5px;">
+            <option value="" [selected]="selectedCount === ''">Default</option>
+            <option [value]="o" [selected]="selectedCount === o" *ngFor="let o of options">{{o}}</option>
+        </select>
+    </span>
+</span>

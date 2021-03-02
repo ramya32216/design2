@@ -1,0 +1,41 @@
+<nav class="nav-bars">
+    <div class="row">
+        <div class="col-auto mr-auto"><img src="assets/svg/Logo.svg"></div>
+        <div class="col-auto"><a class="btns-navbar" [routerLink]="['/signup']" title="signup" >Don't have an account? Sign up now </a></div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="resend-mail">
+            <form [formGroup]="resendSignupEmail" (ngSubmit)="resendEmail()" >
+                <h1 class="resend-header b40" style="margin-top: 56px;"> Resend email </h1>
+                <p class="paragraph"> We have sent an email to <b> {{ emailAddress }} </b> with a link to verify the address.</p>
+                <p class="paragraph" > If you didn't receive the email, try resending it or enter a new email below if it was incorrect. </p>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group" style="margin-top:40px;margin-bottom: 40px;">
+                            <label class="label-inputs"> Email </label>
+                            <input type="email" class="form-control form-input" (keyup)="removeError('email')" placeholder="e.g. name@domain.com" formControlName="resendemail" [ngClass]="{ 'is-invalid': resendemailSubmit && f.resendemail.errors }">
+                            <div *ngIf="resendemailSubmit && f.resendemail.errors" class="error-mez">
+                                <div *ngIf="f.resendemail.errors.required"> Email field is required </div>
+                                <div *ngIf="f.resendemail.errors.pattern"> Please enter a valid email address </div>
+                            </div>
+                            <div class="error-mez">
+                                {{errors['email']}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <input type="submit" class="btn std-button std-button--primary" value="Resend verification email" title="Resend email">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        </div>
+    </div>
+</div>

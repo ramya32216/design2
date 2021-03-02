@@ -1,0 +1,45 @@
+<div *ngIf="!order_id">
+    <div class="row">
+        <div class="col-md-6">
+            <pagination-data [source]="paginationSource" (data)="handleData($event)" style="display: none;">
+            </pagination-data>
+            <!-- <search-query-generator termName="name" typeName="status"  #queryGen></search-query-generator> -->
+        </div>
+        <div class="col-md-12">
+            <div class="table-responsive" >
+                <table class="table table-border table-color" style="margin-top:24px;">
+                    <thead>
+                        <tr>
+                            <th>Order.No</th>
+                            <th>Customer</th>
+                            <th>Details</th>
+                            <th>Time/Date</th>
+                            <th class="text-right">Amount</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngIf="orderHistory&& orderHistory.length == 0">
+                            <td colspan="3" class="text-center">No orders found</td>
+                        </tr>
+                        <tr class="text-capitalize" *ngFor="let orders of orderHistory; let i = index">
+                            <td class="table-name" [routerLink]=" +orders.order_id"> {{orders.order_id}} </td>
+                            <td>{{ orders.customer_name}}</td>
+                            <td>{{ orders.type}}</td>
+                            <td>{{ orders.ordered_at}}</td>
+                            <td class="text-right">${{orders.total_price}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <hr style="margin-top:30px;">
+            <div class=" main">
+            <pagination-page-selector [paginationData]="paginationData"></pagination-page-selector>
+            <items-per-page [options]="['100','200','300','400','500']"></items-per-page>
+        </div>
+        </div>
+    </div>
+    <br><br>
+</div>
+<app-order-details *ngIf="order_id"></app-order-details>      

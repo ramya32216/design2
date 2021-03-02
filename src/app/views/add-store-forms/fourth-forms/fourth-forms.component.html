@@ -1,0 +1,60 @@
+<div class="container h-100 m-class">
+    <form [formGroup]="bankForm" (ngSubmit)="bankdetailForm()" >
+    <h1 class="form-header" style="margin-bottom:72px;"> 
+        Add a bank account to receive payments
+    </h1>
+    <p class="paragraph form-group--margin"> You may complete this step now or press <b>save and continue </b> to complete later  </p>
+    <div class="form-group form-group--margin">
+        <label class="label-inputs"> Bank <b class="m-star">*</b></label>
+        <input type="text" class="form-control form-input" formControlName="bankName" [ngClass]="{ 'is-invalid': bankNameSubmit && f.bankName.errors }">
+        <div *ngIf="bankNameSubmit && f.bankName.errors" class="error-mez">
+            <div *ngIf="f.bankName.errors.required"> Please enter bank </div>
+        </div>
+    </div>
+    <div class="form-group form-group--margin">
+        <label class="label-inputs"> Account name <b class="m-star">*</b></label>
+        <input type="text" class="form-control form-input" formControlName="accountName" [ngClass]="{ 'is-invalid': accountNameSubmit && f.accountName.errors }" >
+        <div *ngIf="accountNameSubmit && f.accountName.errors" class="error-mez">
+            <div *ngIf="f.accountName.errors.required"> Please enter account name </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group form-group--null">
+                <label class="label-inputs"> BSB number <b class="m-star">*</b></label>
+                <input  class="form-control form-input" formControlName="BSBnumber" [ngClass]="{ 'is-invalid': BSBnumberSubmit && f.BSBnumber.errors }">
+                <div *ngIf="BSBnumberSubmit && f.BSBnumber.errors" class="error-mez">
+                    <div *ngIf="f.BSBnumber.errors.required"> Please enter BSB number </div>
+                    <div *ngIf="f.BSBnumber.errors.pattern"> Invalid BSB number</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group form-group--null">
+                <label class="label-inputs"> Account number <b class="m-star">*</b></label>
+                <input  class="form-control form-input" formControlName="accountNumber" [ngClass]="{ 'is-invalid': accountNumberSubmit && f.accountNumber.errors }" >
+                <div *ngIf="accountNumberSubmit && f.accountNumber.errors" class="error-mez">
+                    <div *ngIf="f.accountNumber.errors.required"> Please enter account number </div>
+                    <div *ngIf="f.accountNumber.errors.pattern"> Invalid Account number</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group mtop mbottom">
+        <div class="checkbox" >
+            <label style="margin-bottom:0;">
+                <input type="checkbox" style="height:auto; cursor:pointer" formControlName="checkbankdetails" [ngClass]="{ 'is-invalid': checkbankdetailsSubmit && f.checkbankdetails.errors }">
+                &nbsp;I Understand and agree to the <a href=""  style="cursor: pointer;"><u class="link-color">menuzapp terms</u></a>
+            </label>
+        </div>
+        <div *ngIf="checkbankdetailsSubmit && f.checkbankdetails.errors" class="error-mez">
+            <div *ngIf="f.checkbankdetails.errors.required"> Please accept our terms of use before proceeding.</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="button" class="btn std-button std-button--transparency" value="Back" (click)="backOwnership()">
+        <input type="submit" class="btn std-button std-button--primary" value="Save and continue" style="margin-left:15px;">
+        <input *ngIf="isAdmin" type="button" class="btn std-button std-button--primary" value="Skip" style="margin-left:16px;" [routerLink]="['../../../../', 'step4', store_id]">
+    </div>
+</form>
+</div>

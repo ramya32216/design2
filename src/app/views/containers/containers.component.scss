@@ -1,0 +1,124 @@
+#wrapper {
+    overflow-x: hidden;
+    display: flex;
+    flex-grow: 1;
+    position: relative;
+}
+.sidebar {
+    height: 100%;
+    max-height: 100%;
+    z-index: 2;
+    background: #fff;
+    box-shadow: 0 16px 38px -35px rgba(0,0,0,.1), 0 4px 25px -5px rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.2);
+}
+.wrapper.toggled .sidebar-wrapper {
+      margin-left: 0;
+}
+.sidebar-heading {
+    padding:10px;
+    background:#353FA8;
+    color:#fff;
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.form-header {
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 48px;
+    color:#000;
+  }
+  .re-send {
+    color:#353FA8;
+    background: #FAFAFA;
+    font-weight:600;
+    border-radius: 0;
+  }
+  .btn-custom-login {
+    color:#fff;
+    background: #353FA8;
+    border-radius: 0;
+  }
+  .upload-file-btn {
+    color:#353FA8;
+    background: #FAFAFA;
+    font-weight:600;
+    border-radius: 0;
+    border: 2px solid #F2F2F2;
+  }
+  .mobile-response { 
+    background:#fff;
+    color:#353FA8;
+    z-index: 2;
+    width: 320px;
+    height: 100%;
+    -webkit-transform: translate3d(0%, 0, 0);
+    -ms-transform: translate3d(0%, 0, 0);
+    -o-transform: translate3d(0%, 0, 0);
+    transform: translate3d(0%, 0, 0);
+  }
+  .right-side-popup {
+    position: fixed;
+    top: 56px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1050;
+    overflow: hidden;
+    outline: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: none;
+  }
+  
+
+
+  /**
+  New Order Notification
+  **/
+  .new-order-notification{
+    position:absolute;;
+    width:100%;
+    height:100%;
+    z-index:10;
+    top:0;
+    background:#141974;
+    padding:16px;
+    .new-order-template{
+      text-align:center;
+      margin-top:5%;
+      .new-order-text{
+        font-weight: bold;
+        font-size: 24px;
+        line-height: 28px;
+        color: #FFFFFF;
+        display:block
+      }
+      .new-order-count{
+        margin-top:50px;
+        font-weight: bold;
+        font-size: 128px;
+        line-height: 128px;
+        color:#fff;
+        background: #36A900;
+        border-radius: 100%;
+        padding: 5px 52px;
+        width:50%;
+        height:50%;
+      }
+      .new-order-view-text{
+        display:block;
+        margin-top:42px;
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 20px;
+        color: #FFFFFF;
+      }
+    }
+   
+  }
+  .btn:hover{
+    color:#fff;
+  }

@@ -1,0 +1,40 @@
+<ul class="resnt-menu-top-tabs u-margin-bottom-medium">
+    <li class="resnt-menu-top-tabs__item">
+        <button class="resnt-menu-top-tabs__button tabs-menu" routerLink="./pending"
+            routerLinkActive="resnt-menu-top-tabs__button__active"> Pending </button>
+    </li>
+    <li class="resnt-menu-top-tabs__item">
+        <button class="resnt-menu-top-tabs__button tabs-menu" routerLink="./approved"
+            routerLinkActive="resnt-menu-top-tabs__button__active"> Approved </button>
+    </li>
+    <li class="resnt-menu-top-tabs__item">
+        <button class="resnt-menu-top-tabs__button tabs-menu" routerLink="./shells"
+            routerLinkActive="resnt-menu-top-tabs__button__active">
+            Store shells
+        </button>
+    </li>
+</ul>
+<section class="resnt-menu-tabs-content">
+    <router-outlet></router-outlet>
+</section>
+
+<ng-template #sideBarLinks>
+    <ul class="sidenav__list">
+        <li class="sidenav__link" style="border-bottom: 1px solid var(--color-lines-primary); cursor: context-menu;">
+            <span class="std-heading-5"> Stores </span>
+        </li>
+        <li class="sidenav__link sidenav--hover color-primary"
+            style="border-bottom: 1px solid var(--color-lines-primary);" title="Add store shell"
+            routerLink="/store/step1/create"> <img class="sidenav__link__img"
+                src="assets/images/ico_add_blue.png">
+            <span> Add store shell </span>
+        </li>
+        <app-file-upload #fileUpload [uploadApiFunction]="uploadApi" [accept]="validFileFormats" [validators]="csvFileValidators" (url)="alertService.showNotification('Successfully Imported')" (error)="alertService.showNotification($event, 'error')">
+            <li class="sidenav__link sidenav--hover color-primary"
+                style="border-bottom: 1px solid var(--color-lines-primary);" title="Add store shell">
+                <img class="sidenav__link__img" src="assets/images/ico_upload.png">
+                <span> Import via CSV </span>
+            </li>
+        </app-file-upload>
+    </ul>
+</ng-template>

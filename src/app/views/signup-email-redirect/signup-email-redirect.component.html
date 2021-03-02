@@ -1,0 +1,49 @@
+<nav class="nav-bars">
+    <div class="d-flex justify-content-between">
+        <img src="assets/svg/Logo.svg">
+        <!-- <a class="btns-navbar" [routerLink]="['/signup']" title="signup" >Don't have an account? Register now </a> -->
+    </div> 
+</nav>
+<div *ngIf="emailActiveStatus==='confirm'">
+    <div class="container h-100">
+        <div class="row m-class">
+            <div class="col-md-6 col-lg-7 col-xs-12 col-sm-12">          
+                <div class="row">
+                    <div class="col-md-12">
+                        <table>
+                            <tr>
+                                <td valign="top" width="60"> <img class="mt-2" src="assets/svg/right-mark.svg" /></td>
+                                <td>
+                                    <h1 class="form-header" style="margin-bottom: 24px;"> Thank you, your email has been confirmed. </h1> 
+                                    <p style="margin-bottom: 40px;"> Please login to continue. </p>
+                                    <input type="button" (click)="navigateToLogin()"class="btn std-button std-button--primary" value="Login" >
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>           
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container h-100" *ngIf="emailActiveStatus==='expired'">
+    <div class="row m-class">
+        <div class="col-md-5 col-lg-5 col-xs-12 col-sm-12">          
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <table>
+                        <tr>
+                            <td valign="top" width="60"> <i class="fa fa-times fa-3x" style="color:#dd0000;font-weight: 100;"></i></td>
+                            <td>
+                                <h3 class="sign-header"> Link is expired. </h3> 
+                                <p> Please  <a [routerLink]="['/']" >login</a> to continue. </p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>           
+        </div>
+    </div>
+</div>

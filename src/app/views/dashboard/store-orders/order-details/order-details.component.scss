@@ -1,0 +1,59 @@
+@media(max-width:640px){
+    .History{
+        display: block;
+    }
+}
+.capital::first-letter{
+    text-transform: capitalize;
+}
+.capital
+{
+    text-transform: lowercase;
+}
+
+
+
+
+.total-amount td{
+    border:none;
+}
+.total-amount-text{
+    padding-top:30px;
+    border:none;
+    font-size:16px
+}
+
+.order-profile{
+    padding:16px 0;
+    margin-top:8px;
+    .profile-image-container{
+        width:80px;
+        height:80px;
+        border-radius: 40px;
+        border:1px solid #f9f9f9;
+    }
+    .user-icon{
+        font-size:52px;
+        color:#e7e4e4;
+        width:80px;
+        height:80px;
+        margin-top:10px;
+        text-transform: capitalize;
+    }
+    .profile-details{
+        margin-left:16px;
+        .profile-name{
+            font-weight: bold;
+            font-size: 20px;
+            line-height: 24px;
+            color: #000;
+            display:block;
+        }
+        .order-type{
+            color: #1A1A1A;
+            font-weight: bold;
+            font-size: 14px;
+            line-height: 20px;
+        }
+    }
+}

@@ -1,0 +1,37 @@
+<nav class="nav-bars">
+    <div class="d-flex justify-content-between">
+        <img src="assets/svg/Logo.svg">
+        <!-- <a class="btns-navbar" [routerLink]="['/signup']" title="signup" >Don't have an account? Register now </a> -->
+    </div> 
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="verify-mail">
+                <h1 class="verify-header b40" style="margin-top: 56px;"> Please verify your email address </h1>
+                <p class="paragraph"> We have sent an email to <b> {{ emailAddress }} </b> with a link to verify the address.</p>
+                <p class="paragraph"> If you don't receive the email, check your spam folder, try again using a different email address, or contact our <a [routerLink]="['/page-under-progress']" title="Support team"> <u class="link-color">support team.</u></a>  </p>
+                <!-- <div class="row mb-2">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="label-inputs"> Email </label>
+                            <input type="email" class="form-control form-input" placeholder="e.g. name@domain.com" formControlName="resendemail" [ngClass]="{ 'is-invalid': resendemailSubmit && f.resendemail.errors }">
+                            <div *ngIf="resendemailSubmit && f.resendemail.errors" class="error-mez">
+                                <div *ngIf="f.resendemail.errors.required"> Email field is required </div>
+                                <div *ngIf="f.resendemail.errors.email"> Please enter a valid email address </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group" style="margin-top:40px;">
+                            <a [routerLink]="['/resend-email']"><input type="button" class="btn std-button std-button--transparency" value="Resend email" title="Resend email"></a>
+                            <a [routerLink]="['/']" ><input type="button" class="btn std-button std-button--primary" value="Back to menuzapp" style="margin-left:15px;"></a>
+                        </div>
+                    </div>
+                </div>
+                </div>
+        </div>
+    </div>
+</div>

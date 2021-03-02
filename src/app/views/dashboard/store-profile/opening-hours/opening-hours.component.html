@@ -1,0 +1,67 @@
+<div loadingPlaceholder [loadStatus]="storeBasicDetail">
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="std-heading-3 b32" > 
+                <img *ngIf="editMode" (click)="toggleEdit(); storeBasicDetail.openingHours = availabilityCache" src="assets/images/ico_back.png" style="cursor: pointer;">
+                &nbsp;Opening hours &nbsp;<img
+            src="assets/images/ico_help.png" style="cursor:pointer;" title="info"
+            (click)="modalService.open(content, { centered: true });"></h3>
+
+            <ng-container *ngIf="!isStaff || (storeBasicDetail.unclaimed === 'setup')">
+                <div class="float-right" style="margin-bottom:16px;" *ngIf="!editMode; else editButtons">
+                    <button (click)="toggleEdit()" type="button" class="btn std-button std-button--primary"> <img
+                        src="assets/images/ico_edit_white.png">&nbsp; Edit opening hours </button>
+                </div>
+                <ng-template #editButtons>
+                    <div class="float-right" style="margin-bottom:16px;">
+                        <button type="button" (click)="toggleEdit(); storeBasicDetail.openingHours = availabilityCache" class="btn std-button std-button--transparency" style="margin-left:10px;"> Cancel </button>
+                        <button  type="button" (click)="initiateSave()" [disabled]="!editior?.dirty"  class="btn std-button std-button--primary" style="margin-left:10px;"> Save </button>
+                    </div>
+                </ng-template>
+            </ng-container>
+            
+        </div>
+    </div>
+    <ng-container *ngIf="!editMode; else editor">
+        <app-time-availability-summary [availabilities]="storeBasicDetail?.openingHours">
+        </app-time-availability-summary>
+    </ng-container>
+</div>
+<div *ngIf="storeBasicDetail?.openingHours.length === 0">Please add atleast one opening hour</div>
+
+<ng-template #openingHoursHeading>
+    <div class="row">
+        <div class="col-md-12">
+            <h4 class="std-heading-4" style="margin-top:64px;margin-bottom:32px;"> Opening hours </h4>
+        </div>
+        <div class="col-md-12" style="margin-top:32px;margin-bottom:32px;">
+            
+            <p class="paragraph"> Select <b>days</b> and <b>times</b> above and press <b>add time</b> to add
+                opening hours.
+             </p>
+        </div>
+    </div>
+</ng-template>
+<ng-template #editor>
+    <time-availability-editor (onChange)="storeBasicDetail.openingHours = $event"
+        [availability]="storeBasicDetail.openingHours" [headingTempalte]="openingHoursHeading" #editior></time-availability-editor>
+</ng-template>
+<!-- Info modal -->
+<ng-template #content let-modal>
+    <div class="modal-header header-info">
+        <div class="std-heading-4 std-heading-5--popheader"> Opening hours </div>
+        <button type="button" class="close info-q" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true"><img src="assets/images/x.png"></span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p class="paragraph">
+            <b> Opening hours </b>will display on your store page and generally determine when
+            customers are able to purchase via the app (you may also set custom availability times for your individual
+            menus).
+        </p>
+    </div>
+</ng-template>
+<!-- Info modal end-->
+
+<!-- <button (click)="debug()">Debug</button> -->

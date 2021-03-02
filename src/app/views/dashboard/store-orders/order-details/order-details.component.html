@@ -1,0 +1,89 @@
+<span class="std-heading-3 History"> <img src="assets/images/ico_back.png" (click)="navigateRouter('back')"
+        style="cursor: pointer;"> &nbsp;Order# {{storeOrderDetail.order_id}}
+    - Pick Up
+</span>
+<div class="row order-profile">
+    <div class="col-lg-4 col-md-12 col-sm-12">
+        <div class="d-flex justify-content-start">
+            <!-- <div class="profile-image-container text-center">
+                <span *ngIf="!storeOrderDetail.profile_image" class="user-icon" aria-hidden="true">{{storeOrderDetail.name ? storeOrderDetail.name.charAt(0) : ''}}</span>
+                <img *ngIf="storeOrderDetail.profile_image" src="{{storeOrderDetail.profile_image}}" class="profile-image-container"/>
+            </div> -->
+           
+                    <div class="profile-image-container text-center">
+                        <span *ngIf="!storeOrderDetail.profile_image" class="user-icon" aria-hidden="true">{{storeOrderDetail.customer_name ? storeOrderDetail.customer_name.charAt(0) : ''}}</span>
+                        <img *ngIf="storeOrderDetail.profile_image" src="{{storeOrderDetail.profile_image}}" class="profile-image-container"/>
+                    </div>
+
+
+
+            <div class="profile-details text-capitalize  pt-4">
+                <span class="profile-name">{{storeOrderDetail.customer_name ? storeOrderDetail.customer_name : ''}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-12 col-sm-12">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 pt-4">
+                <div class="d-flex">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 11.5C21.0034 12.8199 20.6951 14.1219 20.1 15.3C19.3944 16.7118 18.3098 17.8992 16.9674 18.7293C15.6251 19.5594 14.0782 19.9994 12.5 20C11.1801 20.0035 9.87812 19.6951 8.7 19.1L3 21L4.9 15.3C4.30493 14.1219 3.99656 12.8199 4 11.5C4.00061 9.92179 4.44061 8.37488 5.27072 7.03258C6.10083 5.69028 7.28825 4.6056 8.7 3.90003C9.87812 3.30496 11.1801 2.99659 12.5 3.00003H13C15.0843 3.11502 17.053 3.99479 18.5291 5.47089C20.0052 6.94699 20.885 8.91568 21 11V11.5Z" stroke="#353FA8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="std-heading-4 History" style="padding-left: 11px; color:var(--color-primary);cursor:pointer">Send
+                    message</span>
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-6 col-sm-6 pt-4">
+                <div class="d-flex">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="#353FA8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M22 6L12 13L2 6" stroke="#353FA8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="std-heading-4 History" style="padding-left: 10px;color:var(--color-primary);cursor:pointer">Send
+                        email</span>
+                </div> 
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <div class="table-responsive">
+        <table class="table table-border table-color" style="margin-top:8px;">
+            <thead>
+                <tr>
+                    <th>Items</th>
+                    <th>Quantity</th>
+                    <th>Modifiers</th>
+                    <th class="text-right">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <ng-container *ngFor="let item of storeOrderDetail['items']">
+                    <tr>
+                        <td class="table-name"> {{item.item_name ? item.item_name : ''}}</td>
+                        <td>{{item.quantity}}</td>
+                        <td class="capital">
+                            <ng-container *ngFor="let modifiers of item.modifiers">
+                                <ng-container *ngFor="let options of modifiers.options">
+                                    <span class="modifier text-capitalize">{{options.name ? options.name : ''}}{{(modifiers.options.length==0 || item.modifiers.length<1 )? '':','}}</span>
+
+
+     
+                                </ng-container>
+                            </ng-container>
+                        </td>
+                        <td class="text-right">
+                            <!-- <span class="modifier">${{addPrice(item.modifiers,item.item_price)}} </span> -->
+                            <span class="modifier">${{item.total_item_price}}</span>
+                        </td>
+                    </tr>
+                </ng-container>
+                <tr class="total-amount"> 
+                    <td></td>
+                    <td></td>
+                    <td colspan="3" class="total-amount-text text-right">Total <span class="font-weight-bold">${{ addTotalPrice(storeOrderDetail['items'])}}</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

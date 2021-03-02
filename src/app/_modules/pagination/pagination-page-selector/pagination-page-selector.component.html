@@ -1,0 +1,20 @@
+<ng-container *ngIf="pageNumbers && pageNumbers.length">
+    <div>
+      <span>
+        <button [disabled]="paginationData.currentPage === 1" (click)="goToPage(paginationData.currentPage-1)" class="chevron-btn" >
+            <img [src]="paginationData.currentPage === 1? 'assets/images/ico_chevron_left.png' : 'assets/images/ico_chevron_left_blue.png' ">
+         </button>
+         
+         <button style="border:0;outline:0;"  *ngFor="let p of pageNumbers" [disabled]="p === paginationData.currentPage" [ngClass]="p === paginationData.currentPage? 'page-number-active' : 'page-number-inactive' "
+             (click)="goToPage(p)">
+             {{p}}
+         </button>
+ 
+         <button [disabled]="paginationData.lastPage === paginationData.currentPage"
+             (click)="goToPage(paginationData.currentPage+1)" class="chevron-btn">
+             <img [src] ="paginationData.lastPage === paginationData.currentPage? 'assets/images/ico_chevron_right_gray.png' : 'assets/images/ico_chevron_right.png'">
+         </button>
+      </span>  
+    </div>
+
+</ng-container>

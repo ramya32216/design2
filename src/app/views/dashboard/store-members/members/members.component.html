@@ -1,0 +1,186 @@
+<h3 class="u-margin-bottom-small std-heading-3"> Members <img src="assets/images/ico_help.png"
+    style="cursor:pointer" title="info" (click)="modalService.open(content, { centered: true });"></h3>
+<div class="row">
+    <div class="col-md-3 mb-1">
+        <input type="search" placeholder="Search" (keyup)="searchMemberbyName($event)" class="form-control form-input search" />
+    </div>
+    <div class="col-md-3 mb-1 pd-mq">
+        <select class="custom-select form-control form-input form-input--select-input" (change)="searchMemberbyType($event)">
+            <option value=''> All </option>
+            <option *ngFor="let role of memberRole"  [value]="role.store_member_role_id"> {{role.role_name}} </option>
+        </select>
+    </div>
+    <div class="col-md-6">
+        <div style="text-align: right;">
+            <button class="btn std-button std-button--primary" (click)="showinviteTemplate(invite)"> <img src="assets/images/ico_add.png">&nbsp;&nbsp;Invite </button>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="table-responsive">
+            <table class="table table-border table-color" style="margin-top:24px;">
+                <thead>
+                    <tr>
+                        <th> Name </th>
+                        <th> Email </th>
+                        <th> Role </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let members of members_array">
+                        <td class="table-name"> 
+                            <div *ngIf="members?.first_name" class="custom-profile-image" (click)="viewMemberProfile(members.store_member_id)">
+                                <span >
+                                    <img src="assets/images/Frame 98.png" class="profile-image" />
+                                    <!-- <label *ngIf="!user.staticDpImg" class="profile-name-navbar uppercase" > {{ userProfilename ? (userProfilename | slice:0:1) : ''}} </label> -->
+                                    <span style="line-height: 40px;"  [ngStyle]="{'color':members?.active_flag == 0  ? '#B3B3B3' : '' }"> &nbsp; {{ members?.first_name ? members?.first_name : ''}} {{ members?.last_name ? members?.last_name : ''}}</span>
+                                </span>
+                                <!-- <div class="custom-profile-image-text uppercase" *ngIf="!stories.staticDpImg">{{stories?.createrFirstName | slice:0:1}}{{stories?.createrLastName | slice:0:1}}</div> -->
+                            </div>
+                            <div class="ml-4" *ngIf="!members?.first_name">-</div>
+                        </td>
+                        <td style="line-height: 40px;" [ngStyle]="{'color':members?.active_flag == 0  ? '#B3B3B3' : '' }">
+                           <span *ngIf="members?.active_flag == 0">Invite sent to </span> {{ members?.email ? members?.email : '-' }}
+                        </td>
+                        <td style="line-height: 40px;" [ngStyle]="{'color':members?.active_flag == 0  ? '#B3B3B3' : '' }"> {{ members?.role_name ? members?.role_name:'-' }}</td>
+                        <td style="text-align: right;outline: none;" style="line-height: 40px;">
+                            <div class="dropdown">
+                                <img src="assets/images/ico_overflow.png" class="dropdown-toggle"
+                                    data-toggle="dropdown" title="options" style="cursor:pointer;padding:2px 6px;">
+                                <ul class="dropdown-menu dropdown-edit dropdown-menu-right">
+                                    <li class="herf-class" title="Edit" (click)="showChangeRoleTemplate(members?.store_member_role_id,members?.store_member_id,changeRoleTemplate)">
+                                        <img src="assets/images/ico_edit.png">&nbsp;&nbsp;
+                                        Edit role
+                                    </li>
+                                    <li *ngIf="members?.active_flag == 0"  title="Resend Email" class="herf-class" (click)="resendInvite(members?.email,members?.store_member_role_id)">
+                                        <img src="assets/images/ico_back.png">&nbsp;&nbsp;
+                                        Resend Invite
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" style="text-align: center" *ngIf="members_array?.length==0"> No members found </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- Info modal -->
+<ng-template #invite let-modal>
+    <form [formGroup]="inviteMember" (ngSubmit)="onSubmitinviteMember()"> 
+        <div class="modal-header header-info">
+            <div class="std-heading-4 std-heading-5--popheader"> Invite </div>
+            <button type="button" class="close info-q" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true"><img src="assets/images/x.png"></span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="label-inputs"> Email </label>
+                    <input type="text" class="form-control form-input" (keyup)="removeErrorMsg('error_msg')" placeholder="Invite someone by email" formControlName="memberEmail" [ngClass]="{ 'is-invalid': memberEmailSubmit && f.memberEmail.errors }">
+                    <div *ngIf="memberEmailSubmit && f.memberEmail.errors" class="error-mez">
+                        <div *ngIf="f.memberEmail.errors.required"> Please enter email </div>
+                        <div *ngIf="f.memberEmail.errors.pattern"> Please enter a valid email address </div>
+                        
+                    </div>
+                    <div *ngIf="errors['error_msg']" class="error-mez">{{errors['error_msg']}}</div>
+                </div>
+                <div class="col-md-6">
+                    <label class="label-inputs" style="margin-top:32px"> Role </label>
+                    <select class="custom-select form-control form-input form-input--select-input" (ngModelChange)="changeRole()" formControlName="roleName" [ngClass]="{ 'is-invalid': rolenameSubmitted && f.roleName.errors }" >
+                        <option *ngFor="let role of memberRole" [value]="role.store_member_role_id"> {{role.role_name}} </option>
+                    </select>
+                    <div *ngIf="rolenameSubmitted && f.roleName.errors" class="error-mez">
+                        <div *ngIf="f.roleName.errors.required"> Please select role </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="float-right" style="margin-bottom:16px;margin-top:32px;">
+                        <button class="btn std-button std-button--transparency" (click)="modal.dismiss('Cross click')" > Cancel </button>
+                        <button class="btn std-button std-button--primary" style="margin-left:10px;" > 
+                            Send
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</ng-template>
+<!-- Info modal end-->
+
+<!-- Change Role modal -->
+<ng-template #changeRoleTemplate let-modal>
+    <form [formGroup]="changeRoleForm" (ngSubmit)="onSubmitChangeRole()"> 
+        <div class="modal-header header-info">
+            <div class="std-heading-4 std-heading-5--popheader"> Position/role </div>
+            <button type="button" class="close info-q" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true"><img src="assets/images/x.png"></span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="label-inputs" style="margin-top:32px"> Role </label>
+                    <select class="custom-select form-control form-input form-input--select-input"  formControlName="changeRoleName" [ngClass]="{ 'is-invalid': changeRolenameSubmitted && g.changeRoleName.errors }" >
+                        <option *ngFor="let role of memberRole" [value]="role.store_member_role_id"> {{role.role_name}} </option>
+                    </select>
+                    <div *ngIf="changeRolenameSubmitted && g.changeRoleName.errors" class="error-mez">
+                        <div *ngIf="g.changeRoleName.errors.required"> Please select role </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="float-right" style="margin-bottom:16px;margin-top:32px;">
+                        <button class="btn std-button std-button--transparency" (click)="modal.dismiss('Cross click')" > Cancel </button>
+                        <button class="btn std-button std-button--primary" style="margin-left:10px;" > 
+                            Save
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</ng-template>
+<!-- Change Role modal end-->
+<!-- Info modal -->
+<ng-template #content let-modal>
+    <div class="modal-header header-info">
+        <div class="std-heading-4 std-heading-5--popheader"> Members </div>
+        <button type="button" class="close info-q" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true"><img src="assets/images/x.png"></span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p class="paragraph">
+            Invite members to fulfill various <b>roles</b> in your business.
+        </p>
+        <div class="std-heading-5">
+            Owner
+        </div>
+        <p class="paragraph">
+            Full access.
+        </p>
+        <div class="std-heading-5">
+            Editor
+        </div>
+        <p class="paragraph">
+            Full access to menus and specials for specified stores.
+        </p>
+        <div class="std-heading-5">
+            View only
+        </div>
+        <p class="paragraph">
+            No edit access.
+        </p>
+    </div>
+</ng-template>
+<!-- Info modal end-->

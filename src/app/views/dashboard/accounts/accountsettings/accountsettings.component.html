@@ -1,0 +1,103 @@
+
+
+<form [formGroup]="basicDetails" (ngSubmit)="onSubmit()" class="row">
+    <!-- <ng-container *ngIf="!isStaff || (basicDetails.value.unclaimed === 'setup')"> -->
+        <div class="col-md-12"  >
+            <div *ngIf="normalMode else editOptions"  >
+                <div class="float-right"  style="margin-bottom: 48px;">
+                    <button   *ngIf="normalModes" (click)="toggleEditPassword()" type="button" class="btn std-button std-button--primary"> <img
+                            src="assets/images/ico_edit_white.png">&nbsp; Edit Password </button>
+                </div>
+            </div>
+            <div *ngIf="normalModes; else editOption"  >
+                <div class="float-right"  style="margin-bottom: 48px;" >
+                    <button  *ngIf="normalMode" (click)="toggleEdit()" type="button" class="btn std-button std-button--primary"> <img
+                            src="assets/images/ico_edit_white.png">&nbsp; Edit Email </button>
+                </div>
+            </div>
+           
+            <ng-template #editOptions>
+                <div class="col-md-12">
+                    <div class="float-right" style="margin-bottom:48px;">
+                        <button type="button" (click)="cancelEditPassword()" class="btn std-button std-button--transparency"
+                            style="margin-left:10px;"> Cancel </button>
+                        <button type="submit" class="btn std-button std-button--primary" style="margin-left:10px;"
+                            [disabled]="!basicDetails.dirty"><span>Save</span> </button>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template #editOption>
+                <div class="col-md-12">
+                    <div class="float-right" style="margin-bottom:48px;">
+                        <button type="button" (click)="cancelEdit()" class="btn std-button std-button--transparency"
+                            style="margin-left:10px;"> Cancel </button>
+                        <button type="submit" class="btn std-button std-button--primary" style="margin-left:10px;"
+                            [disabled]="!basicDetails.dirty"><span>Save</span> </button>
+                    </div>
+                </div>
+            </ng-template>
+
+        </div>
+     
+        
+    <!-- </ng-container>
+    -->
+    <div class="col-md-12 col-sm-12 col-lg-6 col-xs-12" >
+        <div class="row" >
+            <div *ngIf="normalMode; ">
+                <h2 class="heading" *ngIf="normalModes; " >Email</h2>
+                <h2 class="heading" *ngIf="!normalModes; " > Edit Email</h2>
+                <div class="col-md-12" >
+                    <h5 class="std-heading-5 t12" *ngIf="normalModes; " > Email </h5>
+                    <h5 class="std-heading-5 t12" *ngIf="!normalModes; " > New email address </h5>
+                    <div *ngIf="normalModes; else name" class="paragraph"> {{'kate.barramundi@thelambshop.com.au'}} </div>
+                    <ng-template #name>
+                        <input [ngClass]="{ 'is-invalid': displayError('name') }" class="form-control form-input"
+                        type="text" formControlName="name">
+                        <div *ngIf="displayError('name')" class="error-mez">
+                            <div> Please enter Your Email </div>
+                        </div>
+                        <h5 class="std-heading-5 t12"  > Current password </h5>
+                        <input [ngClass]="{ 'is-invalid': displayError('name') }" class="form-control form-input " type="password" formControlName="name">
+                        <button type="button"  class="btn std-button std-button--transparency std-heading-5 t42" style="color:var(--color-primary)"
+                        > Forgot password </button>
+                    </ng-template>
+                </div> 
+            </div>
+             <!-- <div class="col-md-12 col-sm-12 col-lg-6 col-xs-12" >
+                 <div class="row" > -->
+                     <div *ngIf="normalModes; ">
+                         <h2 class="t56 heading " *ngIf="normalMode;" >Password</h2>
+                         <h2 class="t56 heading " *ngIf="!normalMode;" > Edit Password</h2>
+                         <div class="col-md-12">
+                             <h5 class="std-heading-5 " *ngIf="normalMode;">password </h5>
+                             <h5 class="std-heading-5 " *ngIf="!normalMode;"> New password </h5>
+                             <div *ngIf="normalMode; else  password" class="paragraph"> </div>
+                              <ng-template #password>
+                                  <input [ngClass]="{ 'is-invalid': displayError(' password') }" class="form-control form-input"
+                        formControlName=" name"  type="password"
+                       >
+                        <div *ngIf="displayError(' password')" class="error-mez">
+                            <!-- <div> Please enter a password</div> -->
+                        </div>
+                        <h5 class="std-heading-5 t12"  > Current password </h5>
+                        
+                        <input [ngClass]="{ 'is-invalid': displayError('name') }" class="form-control form-input " type="password" formControlName="name">
+                        <button type="button"  class="btn std-button std-button--transparency std-heading-5 t42" style="color:var(--color-primary)"
+                        > Forgot password </button>
+                                </ng-template>
+                     <!-- </div>
+                 </div>std-heading-5 t42 -->
+             </div>
+ 
+            <div *ngIf="normalModes && normalMode">
+               <h2 class="t56 heading " >Account deactivation</h2>
+               <div class="col-md-12 ">
+                   <div  type="button" class=" std-heading-5 red btn std-button std-button--transparency button " >
+                       <img src="assets/svg/ico_delete.svg">&nbsp; Delete account </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

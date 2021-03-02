@@ -1,0 +1,73 @@
+<h3 class="u-margin-bottom-small std-heading-3"> Items </h3>
+<div class="row">
+    <div class="col-md-7">
+        <search-query-generator termName="name" typeName="status" #queryGen>
+        </search-query-generator>
+    </div>   
+    <div class="col-md-5">
+        <div style="text-align: right;">
+            <button class="btn std-button std-button--primary" routerLink="./new"> <img src="assets/images/ico_add.png">&nbsp;&nbsp;New item </button>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="table-responsive">
+            <table class="table table-border table-color" style="margin-top:24px;">
+                <thead>
+                    <tr>
+                        <th> Name </th>
+                        <th> Price </th>
+                        <th> Menus </th>
+                        <th> Categories</th>
+                        <th> Modifiers </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="text-capitalize" *ngFor="let item of items; let i = index">
+                    <td [routerLink]="'./'+item.id" class="table-name"> {{capitalize(item.name)}} </td>
+                    <td><span *ngIf="item.basePrice">$</span>{{ item.basePrice ? item.basePrice : '$0.00' }} </td>
+                    <td> {{stringHelper.ArrayToConsolidatedString(item.menus, 2, nameAccessor) ? stringHelper.ArrayToConsolidatedString(item.menus, 2, nameAccessor) : '-'}} </td>
+                    <td> {{stringHelper.ArrayToConsolidatedString(item.categories, 2, nameAccessor) ? stringHelper.ArrayToConsolidatedString(item.categories, 2, nameAccessor): '-'}} </td>
+                    <td> {{stringHelper.ArrayToConsolidatedString(item.modifiers, 2, nameAccessor) ? stringHelper.ArrayToConsolidatedString(item.modifiers, 2, nameAccessor): '-'}} </td>
+                    <td style="text-align: right;outline: none;">
+                        <div class="dropdown">
+                            <img src="assets/images/ico_overflow.png"  class="dropdown-toggle" data-toggle="dropdown" title="options" style="cursor:pointer;padding:2px 6px;">
+                            <ul class="dropdown-menu dropdown-edit dropdown-menu-right">
+                                <li class="herf-class" [routerLink]="'./'+item.id" title="Edit">
+                                    <img src="assets/images/ico_edit.png">&nbsp;&nbsp;
+                                Edit
+                                </li>
+                                <li title="Delete" (click)="deleteIndexlist = i; modalService.open(deleteComform, { centered: true, size: 'sm' })" class="herf-class">
+                                    <img src="assets/images/ico_delete_black.png">&nbsp;&nbsp;
+                                    Delete
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                    </tr>
+                    <tr class="text-center">
+                        <td colspan="6" *ngIf="items?.length==0">No items have been added yet.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div> 
+</div>
+<!-- openVerticallyCentered(deleteComform,item.id,item.name)"  -->
+
+<ng-template #deleteComform let-modal3>
+    <div class="modal-body text-center">
+        <h4 class="std-heading-4 mb-2"> Delete item "{{items[deleteIndexlist].name}}"</h4>
+      <p class="mb-2"> 
+          Are you sure? 
+      </p>
+      <button class="std-button std-button--plane" (click)="deleteData(); modal3.dismiss('Cross click')"> Delete </button>
+      <hr style="margin: 0;">
+      <button class="std-button std-button--plane" (click)="modal3.dismiss('Cross click')"> Cancel </button>
+    </div>
+</ng-template>
+<!-- <router-outlet></router-outlet> -->
+

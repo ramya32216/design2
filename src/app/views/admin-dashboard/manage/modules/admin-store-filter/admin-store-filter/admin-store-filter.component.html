@@ -1,0 +1,13 @@
+<div class="row">
+    <div class="col-md-6 mb-1">
+        <input #termInput type="search" placeholder="Search"
+            class="form-control form-input search" />
+    </div>
+
+    <div *ngIf="types" class="col-md-6 mb-1 pd-mq">
+        <select style="text-transform: capitalize;" class="custom-select form-control form-input form-input--select-input" (change)="handleChange($event.target.value)">
+>           <option value="" [selected]="!currentStatusSelection"> All </option>
+            <option [value]="type" [selected]="currentStatusSelection === type" *ngFor="let type of types">{{type}}</option>
+        </select>
+    </div>
+</div>

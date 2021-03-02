@@ -1,0 +1,58 @@
+.std-heading-32{
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 40px;
+}
+body{
+    background:#FAFAFA;
+}
+.header-margin{
+    margin-bottom:16px;
+}
+
+.order-count-warning{
+    position: absolute;
+    right:16px;
+    width:40px;
+    height:40px;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    padding:8px;
+    color: var(--color-boldlevelcolor);
+    background: var(--color-pending);
+}
+.order-count-danger{
+    position: absolute;
+    right:16px;
+    width:40px;
+    height:40px;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    padding:8px;
+    color: var(--color-background);
+    background: var(--color-failure);
+}
+
+.order-count-success{
+    position: absolute;
+    right:16px;
+    width:40px;
+    height:40px;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    padding:8px;
+    color: var(--color-background);
+    background: var(--color-success);
+}
+
+@media only screen and (max-width: 992px)  {
+   .header-margin{
+       margin-top:16px;
+   } 
+}

@@ -1,0 +1,7 @@
+<!-- <input type="text" #inputElem> -->
+<ngx-intl-tel-input #ngxPhone (blur)="debug()" style="width:100%"
+    [cssClass]="phoneControl.errors || !phoneControl.value? 'form-input is-invalid tel-error error-highlight' : 'form-input'"
+    [enablePlaceholder]="false" [onlyCountries]="['in']" [preferredCountries]="['au']" [enableAutoCountrySelect]="true"
+    [separateDialCode]="true" [formControl]="phoneControl" [phoneValidation]="true">
+</ngx-intl-tel-input>
+	

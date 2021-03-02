@@ -1,0 +1,65 @@
+<h3 class="u-margin-bottom-small std-heading-3"> Approved </h3>
+<div class="row">
+    <div class="col-md-6">
+        <!-- <pagination-data [source]="paginationSource" (data)="handleData($event)" style="display: none;">
+        </pagination-data> -->
+        <!-- <search-query-generator termName="name" typeName="status" [types]="['trading', 'notTrading']" #queryGen></search-query-generator> -->
+        <admin-store-filter termName="name" typeName="status" [types]="['trading', 'notTrading']"></admin-store-filter>
+    </div>
+</div>
+<div loadingPlaceholder [loadStatus]="approvedStores">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-border table-color" style="margin-top:24px;">
+                    <thead>
+                        <tr>
+                            <th> Sl. No </th>
+                            <th> Store name </th>
+                            <th> Owner </th>
+                            <th> Status </th>
+                            <th *ngIf="isAdmin"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngIf="approvedStores && approvedStores.length == 0">
+                            <td colspan="4" class="text-center">{{ searchTerm ?'No match found' :'No stores found'}}</td></tr>
+                        <tr class="text-capitalize" *ngFor="let store of approvedStores; let i = index">
+                            <td> {{i + 1}} </td>
+                            <td class="table-name" [routerLink]="'../../../../../stores/'+store.store_id+'/profile'"> {{store.store_name}}</td>
+                            <td> {{store.legal_owner_name}}</td>
+                            <td> {{store.status}} </td>
+                            <td style="text-align: right;cursor:pointer;outline: none;" *ngIf="isAdmin">
+                                <div class="dropdown">
+                                    <img src="assets/images/ico_overflow.png" class="dropdown-toggle"
+                                        data-toggle="dropdown" title="Options" style="cursor:pointer;padding:2px 6px;">
+                                    <ul class="dropdown-menu dropdown-edit dropdown-menu-right" >
+                                        <li class="herf-class" title="Edit" [routerLink]="'../../../../../stores/'+store.store_id+'/profile'">
+                                            <img src="assets/images/ico_edit.png">&nbsp;&nbsp;
+                                            Edit
+                                        </li>
+                                        <li title="Delete" class="herf-class" (click)="deleteStore(i)">
+                                            <img src="assets/images/ico_delete_black.png">&nbsp;&nbsp;
+                                            Delete
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12" *ngIf="approvedStores && approvedStores.length > 0">
+        <hr style="margin-top:30px;">
+        <div class="main">
+            <pagination-page-selector [paginationData]="paginationData"></pagination-page-selector>
+            <items-per-page [options]="['10','20','30','40','50']"></items-per-page>
+
+        </div>
+      
+    </div>
+</div>
+<br><br>

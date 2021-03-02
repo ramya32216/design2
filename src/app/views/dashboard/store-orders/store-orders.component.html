@@ -1,0 +1,76 @@
+<div class="d-flex justify-content-between header-margin">
+    <span class="std-heading-32"> {{statusName}}</span>
+    <div *ngIf="statusName == 'All Orders'" class="mt-2">
+        <span (click)="toggleSideBarMenu()" class="std-heading-5 align-item-center pt-2" *ngIf="orderType != 'hide-cooking'" style="cursor: pointer;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 8H20V17C20 18.0609 19.5786 19.0783 18.8284 19.8284C18.0783 20.5786 17.0609 21 16 21H8C6.93913 21 5.92172 20.5786 5.17157 19.8284C4.42143 19.0783 4 18.0609 4 17V8Z" stroke="#353FA8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M8 2V5" stroke="#353FA8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 2V5" stroke="#353FA8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M16 2V5" stroke="#353FA8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M4 8H1C1 12.5 3 12 4 12V8Z" stroke="#353FA8" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M20 8H23C23 12.4815 21 11.9835 20 11.9835V8Z" stroke="#353FA8" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
+            <span class="std-heading-5 ml-2" >Hide cooking</span>
+        </span>
+        <span  (click)="toggleSideBarMenu()" class="std-heading-5 align-item-center pt-2" *ngIf="orderType=='hide-cooking'" style="cursor: pointer;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 10V17C20 18.0609 19.5786 19.0783 18.8284 19.8284C18.0783 20.5786 17.0609 21 16 21H8M4 17V8H13" stroke="#353FA8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M8 2V5" stroke="#353FA8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M20 5L4 21" stroke="#353FA8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 2V5" stroke="#353FA8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M16 2V5" stroke="#353FA8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M4 8H1C1 12.5 3 12 4 12V8Z" stroke="#353FA8" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M23 8V7C23.5523 7 24 7.44772 24 8H23ZM22 9C21.4477 9 21 8.55228 21 8C21 7.44772 21.4477 7 22 7V9ZM23 9H22V7H23V9ZM20 10.9835C20.4031 10.9835 20.5192 11.0152 20.8197 10.9938C21.0424 10.978 21.1897 10.931 21.3031 10.852C21.5055 10.7109 22 10.1632 22 8H24C24 10.3182 23.4945 11.7624 22.4469 12.4927C21.9353 12.8493 21.3951 12.958 20.9616 12.9888C20.6058 13.0141 20.0969 12.9835 20 12.9835V10.9835Z" fill="#353FA8"/>
+            </svg>
+            <span class="std-heading-5 ml-2" (click)="toggleSideBarMenu()">Show cooking</span>
+        </span>
+    </div>
+</div>
+
+<app-orders-list *ngIf="orderType != 'history'"></app-orders-list>
+
+<app-orders-history *ngIf="orderType == 'history'"></app-orders-history>
+
+<ng-template #sideBarLinks>
+    <ul class="sidenav__list">
+        <li class="sidenav__link" style="border-bottom: 1px solid var(--color-lines-primary); cursor: context-menu;">
+            <ng-container *ngIf="activeStore$ | async; let store">
+                <img class="sidenav__link__img sidenav__link__img--hover-back" (click)="navigateRouter('back')"  style="cursor: pointer;outline: none;"
+                src="assets/images/arrow-left.png"><span class="std-heading-5 text-capitalize"> {{ store.name}} </span>
+            </ng-container>
+        </li>
+        <li appSideNavClick class="sidenav__item">
+            <a class="sidenav__link sidenav--hover" (click)="navigateRouter('all-orders')"  style="text-decoration: none;"
+            [ngClass]="{'sidenav__link--active': orderType === 'all-orders'}"><img class="sidenav__link__img"
+                    src="assets/images/orders/all-orders.svg"><span class="color-primary">All orders
+                    </span></a>
+        </li>
+        <li appSideNavClick class="sidenav__item">
+            <a class="sidenav__link sidenav--hover" (click)="navigateRouter('new-orders')" style="text-decoration: none;"
+            [ngClass]="{'sidenav__link--active': orderType === 'new-orders'}"><img class="sidenav__link__img"
+                    src="assets/images/orders/neworders.svg"><span class="color-primary">New orders
+                    </span><span class="order-count-success" *ngIf="newOrderCount>0" >{{newOrderCount}}</span></a>
+        </li>
+        <li appSideNavClick class="sidenav__item">
+            <a class="sidenav__link sidenav--hover" (click)="navigateRouter('cooking')" style="text-decoration: none;" 
+            [ngClass]="{'sidenav__link--active': orderType === 'cooking'}"><img class="sidenav__link__img"
+                    src="assets/images/orders/cooking.svg"><span class="color-primary">
+                    Cooking</span><span class="order-count-warning" *ngIf="cookingOrderCount>0">{{cookingOrderCount}}</span>
+            </a>
+        </li>
+        <li appSideNavClick class="sidenav__item">
+            <a class="sidenav__link sidenav--hover" (click)="navigateRouter('ready')" style="text-decoration: none;" 
+            [ngClass]="{'sidenav__link--active': orderType === 'ready'}"><img class="sidenav__link__img"
+                    src="assets/images/orders/orders.svg"><span class="color-primary">
+                    Ready</span><span class="order-count-danger" *ngIf="readyOrderCount > 0">{{readyOrderCount}}</span></a>
+        </li>
+        <li appSideNavClick class="sidenav__item">
+            <a class="sidenav__link sidenav--hover"  (click)="navigateRouter('history')" style="text-decoration: none;" 
+            [ngClass]="{'sidenav__link--active': orderType === 'history'}"><img class="sidenav__link__img"
+                    src="assets/images/orders/history.svg"><span class="color-primary">
+                    History</span></a>
+        </li>
+        
+       
+    </ul>
+</ng-template>

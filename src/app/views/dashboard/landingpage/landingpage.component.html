@@ -1,0 +1,278 @@
+<nav class="nav-bars">
+    <div class="row">
+        <div class="col-auto mr-auto"><img src="assets/svg/Logo.svg"></div>
+        <div class="col-auto btns-navbar">Log in</div>
+        <div class="col-auto btns-navbar">Sign up</div>
+    </div>
+</nav>
+<div class="signup">
+  <div class="container ">
+    <div class="row ">
+      <div class="col-md-6  col-sm-12 signup-space">
+        <p class="f56">Connect with more customers, more often</p> 
+        <p class="paragraph">Add your store today</p>
+      </div>
+      <div class="col-md-6 col-sm-12 form-space">
+        <div class="form-white">
+          <div class="inside-form-space">
+            <p class="std-heading-4 ">Get started</p>
+            <form [formGroup]="signupMenuzappform" (ngSubmit)="menuzappSignup()">
+              <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group form-group--margin">
+                        <label class="label-inputs"> Restaurant name  <b class="m-star">*</b> </label>
+                        <input type="email" class="form-control form-input"  (keyup)="removeError('email')" formControlName="signupemail" [ngClass]="{ 'is-invalid': emailSubmit && f.signupemail.errors }">
+                        <div *ngIf="emailSubmit && f.signupemail.errors" class="error-mez">
+                            <div *ngIf="f.signupemail.errors.required">Please enter Restaurant name </div>
+                            <div *ngIf="f.signupemail.errors.email"> Please enter a valid Restaurant name * </div>
+                        </div>
+                        <div class="error-mez">
+                            {{errors['email']}}
+                        </div>
+                    </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group form-group--margin">
+                        <label class="label-inputs"> Store address   <b class="m-star">*</b> </label>
+                        <input type="email" class="form-control form-input"  (keyup)="removeError('email')" formControlName="signupemail" [ngClass]="{ 'is-invalid': emailSubmit && f.signupemail.errors }">
+                        <div *ngIf="emailSubmit && f.signupemail.errors" class="error-mez">
+                            <div *ngIf="f.signupemail.errors.required">Please enter Store address  </div>
+                            <div *ngIf="f.signupemail.errors.email"> Please enter a valid Store address * * </div>
+                        </div>
+                        <div class="error-mez">
+                            {{errors['email']}}
+                        </div>
+                    </div>
+                </div>
+              </div>
+    
+              
+              <div class="row">
+                <div class="col-md-6 col-xs-6">
+                      <div class="form-group form-group--margin">
+                          <label class="label-inputs"> First name <b class="m-star">*</b> </label>
+                          <input type="text" class="form-control form-input" (keyup)="removeError('first_name')" formControlName="fname" [ngClass]="{ 'is-invalid': fnameSubmit && f.fname.errors }"
+                          onkeypress="return event.charCode!=32">
+                          <div *ngIf="fnameSubmit && f.fname.errors" class="error-mez">
+                              <div *ngIf="f.fname.errors.required"> Please enter first name </div>
+                          </div>
+                          <div class="error-mez">
+                              {{errors['first_name']}}
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-md-6 col-xs-6">
+                      <div class="form-group form-group--margin">
+                          <label class="label-inputs"> Last name <b class="m-star">*</b> </label>
+                          <input type="text" class="form-control form-input"  (keyup)="removeError('last_name')"  formControlName="lname" [ngClass]="{ 'is-invalid': lnameSubmit && f.lname.errors }"
+                          onkeypress="return event.charCode!=32">
+                          <div *ngIf="lnameSubmit && f.lname.errors" class="error-mez">
+                              <div *ngIf="f.lname.errors.required"> Please enter last name</div>
+                          </div>
+                          <div class="error-mez">
+                              {{errors['last_name']}}
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-12">
+                      <div class="form-group form-group--margin">
+                          <label class="label-inputs"> Email <b class="m-star">*</b> </label>
+                          <input type="email" class="form-control form-input"  (keyup)="removeError('email')" placeholder="Enter the email you’ll use to log in" formControlName="signupemail" [ngClass]="{ 'is-invalid': emailSubmit && f.signupemail.errors }">
+                          <div *ngIf="emailSubmit && f.signupemail.errors" class="error-mez">
+                              <div *ngIf="f.signupemail.errors.required">Please enter email address </div>
+                              <div *ngIf="f.signupemail.errors.email"> Please enter a valid email address </div>
+                          </div>
+                          <div class="error-mez">
+                              {{errors['email']}}
+                          </div>
+                      </div>
+                  </div>
+              </div>
+             
+              <div class="row">
+                  <div class="col-md-12">
+                      <div class="form-group form-group--margin">
+                          <label class="label-inputs"> Mobile <b class="m-star">*</b> </label><br>
+                          <!-- <telephone-input  formControlName="signupmobile"></telephone-input> -->
+                          <input class="form-control form-input" placeholder="e.g. 0412345678" (keyup)="removeError('mobile_number')" formControlName="signupmobile" [ngClass]="{ 'is-invalid': mobileSubmit && f.signupmobile.errors }" minlength="10" maxlength="10" (keypress)="keyPress($event)" >
+                          <div *ngIf="mobileSubmit && f.signupmobile.errors" class="error-mez">
+                              <div *ngIf="f.signupmobile.errors.required"> Please enter mobile number </div>
+                              <div *ngIf="f.signupmobile.errors.pattern"> Mobile number must be 10 digits</div>
+                          </div>
+                          <div class="error-mez">
+                              {{errors['mobile_number']}}
+                          </div>
+                      </div>
+                  </div>
+              </div>
+            
+    
+              <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group" >
+                        <small class="paragraph paragraph--small">
+                          By clicking ‘Sign up’, you agree to menuzapp<a [routerLink]="['/page-under-progress']" title="Terms and Conditions"> General Terms </a> and Conditions and acknowledge you have read the <a [routerLink]="['/page-under-progress']" title="Privacy Policy"> Privacy Policy.</a>
+                        </small>
+                    </div>
+                </div>
+              </div> 
+              <div class="row">
+                  <div class="col-md-6">
+                      <div class="form-group" >
+                          <input type="submit" class="btn std-button std-button--blue" value="Sign up" >
+                      </div>
+                  </div>
+              </div>
+              
+          </form>
+
+          </div>
+         
+
+        </div>
+      
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="container ">
+    <p class="std-32">Why join us?</p> 
+    <div class="row">
+      <div class="col-md-4 col-sm-12">
+          <h2 class="std-heading-4">Put your menu online</h2>
+          <p class="check-label-text mbm-48"> Add your menu items and add photos of each dish so that your customers can browse and order without needing to wait to be served.</p>
+      </div>
+      <div class="col-md-4 col-sm-12">
+        <h2  class="std-heading-4"> Reach more customers</h2>
+        <p class="check-label-text mbm-48">Your entire menu becomes searchable citywide. Anyone looking for an item you offer will be attracted to your restaurant.</p>
+        
+      </div>
+      <div class="col-md-4 col-sm-12">
+        <h2  class="std-heading-4">Return visits</h2>
+        <p class="check-label-text mbm-32">Customers receive in-app notifications every time you change your menu. Any time you post a special or add a new dish, your followers will be notified and encouraged to come and eat!</p>
+        
+      </div>
+    </div>
+    <div class="row ">
+        <div class="col-md-8 col-sm-12 mb40">
+           <img class="man" src="assets/svg/Photo/man.svg"/>
+        </div>
+        <div class="col-md-4 col-sm-12 t122">
+              <p class="yellow">"</p>
+              <p class="italic">We tripled our turnover in just 2 weeks with menuzapp. Jonah is a freakin’ legend. Steve is okay too...</p>
+              <p class="italic-sm">Matt Moran ~ Arias, Riverbar</p>
+        </div>
+    </div>
+    <p class="std-32 t136"> How does it work?</p>
+    <div class="row work">
+        <div class="col-md-4 col-sm-12">
+            <img class="illus" src=" assets/svg/Card/illus1.svg"/>
+            <p class="std-heading-4">Customers order</p>
+            <p  class="check-label-text">A customer scans the QR code on your table, storefront signage or by searching online within the menuzapp app. </p>
+
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <img  class="illus" src=" assets/svg/Card/illus2.svg"/>
+            <p class="std-heading-4">You prepare</p>
+            <p  class="check-label-text"> You hit the accept button and prepare the order. </p>
+            
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <img  class="illus" src=" assets/svg/Card/illus3.svg"/>
+            <p class="std-heading-4">Countdown timer</p>
+            <p  class="check-label-text">Both you and the customer are synched with a countdown timer that you set andthe customer knows when meal is ready! </p>
+            
+        </div>
+    </div>
+    <p class="std-32 t168">Get started in just 3 steps</p> 
+    
+    
+    <div class="row m1">
+        <div class="col-md-4 text-center ">
+            <div class="col-md-4  first  number">
+                <img src="assets/svg/ico_circle_number_large (1).svg">
+                <!-- <div class=" text-center">
+                    <p class="std-heading-3 ">1</p>
+
+                </div> -->
+             
+            </div>
+             <img class="scan" src=" assets/svg/Card/Icon_Restaurant 1.svg"/>
+            <p class="std-heading-4">Tell us about your restaurant</p>
+        </div>
+        <div class="col-md-4 text-center  t72">
+            <div class="col-md-4  first number"><img src="assets/svg/ico_circle_number_large (2).svg"></div>
+            <img class="scan" src=" assets/svg/Card/Icon_Menu 1.svg"/>
+            <!-- <img class="scan" src=" assets/svg/Card/illus5.svg"/> -->
+            <p class="std-heading-4">Upload your menu</p>
+        </div>
+        <div class="col-md-4 text-center t72">
+            <div class="col-md-4 number"><img src="assets/svg/ico_circle_number_large.svg"></div>
+            <img class="scan" src=" assets/svg/Card/Icon_Money 1.svg"/>
+            <p class="std-heading-4">Choose how you would like to receive payments</p>
+        </div>
+    </div>
+   <div class="row">
+       <div class="col text-center">
+           <input type="button" class="btn std-button std-button--primary" value="Get started">
+
+       </div>
+   </div>
+</div>    
+<!-- footer -->
+<footer class="footer-area ">
+    <div class="mini-footer">
+      <div class="container">
+        <div class="row t80">
+          <div class="col-md-3  order-md-1 order-sm-2 ">
+            <p class="std-heading-4 white ">For restaurants</p>
+            <ul class="list">
+             <li><a  class="paragraph--small t24" href="#">About</a></li>
+             <li><a   class="paragraph--small " href="#">Pricing </a></li>
+             <li><a   class="paragraph--small " href="#">Support</a></li>
+             <li><a   class="paragraph--small "href="#">Become a partner </a></li>
+            </ul>
+        
+           
+           </div>
+           <div  class="col-md-2 order-md-2 order-sm-1">
+            <p class="std-heading-4 white "> For diners</p>
+            <p class="paragraph--small t8">Order food</p>
+            <p class="paragraph--small ">   Sign up</p>
+               
+            </div>
+           <div  class="col-md-7  ">
+            <img class="logo " src="assets/svg/Card/logo_240_stacked.svg"/>
+            <p class="table-colors">Menuzapp is Australia's first dedicated food search and ordering service.</p>
+              <div class="all-social-media">
+                <a  class="social-media" href="https://www.facebook.com/"><img src="assets/svg/Card/ico_social_facebook-solid.svg"/></a>
+                <a class="social-media" href="https://twitter.com/login/"><img src="assets/svg/Card/ico_social_twitter.svg"/></a>
+                <a class="social-media" href="https://www.instagram.com/login/" ><img src="assets/svg/Card/ico_social_instagram.svg"/></a>
+                <a class="social-media" href="https://www.youtube.com/"><img src="assets/svg/Card/ico_social_youtube.svg"/></a>
+              </div>
+              <div  class="google-img">
+                  <img  class="google-wid" src="assets/svg/Card/App store badge - Google.svg"/>
+                  <img class="google-wid" src="assets/svg/Card/App store badge - Apple.svg"/>
+              </div>
+           
+           </div>
+        </div>
+    </div>
+</div>
+
+<div class="mini-footer-two">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 "><p class="b14">© 2021 Menuzapp Pty Ltd</p> </div>
+          <div  class="col-md-2 "><p  class="b14">Privacy policy</p></div>
+          <div  class="col-md-2"> <p  class="b14">Terms of service</p></div>
+        </div>
+      </div>
+    </div>
+</footer>

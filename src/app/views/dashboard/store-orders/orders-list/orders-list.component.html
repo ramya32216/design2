@@ -1,0 +1,219 @@
+<div class="orders">
+    <div #widgetsContent class="order-overflow" (wheel)="onWheel($event)">
+        <div class="order-card" *ngFor="let orders of storeOrders;let i = index;">
+            <div class="order-header text-center" *ngIf="orders.status == 'READY'">
+                <span class="order-status-text">Ready!</span>
+                <div class="d-flex justify-content-center">
+                    <div class="mt-8" id="progressbar">
+                        <div class="status-ready"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="order-header text-center" *ngIf="orders.status == 'COOKING'">
+                <span class="order-status-text">Cooking {{orders.preparing_order ? orders.preparing_order+1 : '0'}} min</span>
+                <div class="d-flex justify-content-center">
+                    <div class="mt-8" id="progressbar-cooking">
+                       <div class="status-cooking" [style.width]="orders.preparing_order ? progressbarWidth(orders.preparing_order) : progressbarWidth(0)" ></div>
+                    </div>
+                </div>
+            </div>
+            <div class="order-header text-center" *ngIf="orders.status == 'NEW'">
+                <span class="order-status-text">New order</span>
+                <div class="d-flex justify-content-center">
+                    <div class="mt-8" id="progressbar">
+                        <div class="status-new"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="order-profile">
+                <div class="d-flex justify-content-start">
+                    <div class="profile-image-container text-center">
+                        <span *ngIf="!orders.profile_image" class="user-icon" aria-hidden="true">{{orders.name ? orders.name.charAt(0) : ''}}</span>
+                        <img *ngIf="orders.profile_image" src="{{orders.profile_image}}" class="profile-image-container"/>
+                    </div>
+                    <div class="profile-details text-capitalize  pt-3">
+                        <span class="profile-name">{{orders.name ? orders.name : ''}}</span>
+                        <span class="order-type">Pick up (ASAP)</span>
+                    </div>
+                </div>
+            </div>
+            <div class="order-button align-item-center" *ngIf="orders.status == 'READY'">
+                <button class="btn std-button std-button--danger" (click)="completeOrder(orders.order_id,'complete','COMPLETED')">
+                    <svg width="18" height="21" viewBox="0 0 18 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 5H14C14 2.24 11.76 0 9 0C6.24 0 4 2.24 4 5H2C0.9 5 0 5.9 0 7V19C0 20.1 0.9 21 2 21H16C17.1 21 18 20.1 18 19V7C18 5.9 17.1 5 16 5ZM9 2C10.66 2 12 3.34 12 5H6C6 3.34 7.34 2 9 2ZM16 19H2V7H16V19ZM9 11C7.34 11 6 9.66 6 8H4C4 10.76 6.24 13 9 13C11.76 13 14 10.76 14 8H12C12 9.66 10.66 11 9 11Z" fill="white"/>
+                    </svg>
+                       &nbsp;&nbsp;Complete
+                </button>
+            </div>
+            <div class="order-button align-item-center" *ngIf="orders.status == 'COOKING'">
+                <button class="btn std-button std-button--warning btn-hover" (click)="approveOrder(orders.order_id,'COOKING',approveOrderTemplate)">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 6V12L16 14" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                       &nbsp;&nbsp;Edit time
+                </button>
+            </div>
+            <div class="order-button align-item-center" *ngIf="orders.status == 'NEW'">
+                    <svg class="dropdown-toggle deny-margin" data-toggle="dropdown" width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect y="12" width="4" height="4" rx="2" fill="#1A1A1A"/>
+                        <rect y="6" width="4" height="4" rx="2" fill="#1A1A1A"/>
+                        <rect width="4" height="4" rx="2" fill="#1A1A1A"/>
+                    </svg>
+                <ul class="dropdown-menu dropdown-edit dropdown-menu-right">
+                    <li class="herf-class deny-text" title="Deny" (click)="deleteIndexlist = i; modalService.open(denyOrderTemplate, { centered: true, size: 'sm' })">
+                       Deny Order
+                    </li>
+                </ul>
+                <button class="btn std-button std-button--success" (click)="approveOrder(orders.order_id,'NEW',approveOrderTemplate)">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 6L9 17L4 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                       &nbsp;&nbsp;Accept
+                </button>
+            </div>
+            <div class="order-items text-capitalize">
+                <ng-container *ngFor = "let item of orders.items">
+                    <div class="d-flex justify-content-start">
+                        <div class="item-div item-name text-capitalize d-flex justify-content-start">
+                            <span class="quantity-width">{{item.quantity}}x</span>
+                            <span>{{item.item_name ? item.item_name : ''}}</span>
+                        </div>
+                        <div class="item-div item-modifiers">
+                            <ng-container *ngFor = "let modifiers of item.modifiers">
+                                <!-- <span class="modifier-type">{{modifiers.modifier_name ? modifiers.modifier_name : ''}}</span> -->
+                                <ng-container *ngFor = "let options of modifiers.options">
+                                    <span class="modifier">{{options.name ? options.name : ''}}</span>
+                                </ng-container>
+                            </ng-container>
+                        </div>
+                    </div>
+                    <hr>
+                </ng-container>
+            </div>
+            <div class="item-cost-details">
+                <div class="d-flex justify-content-between">
+                    <div class="order-number">
+                        Order No. {{orders.order_id ? orders.order_id :''}}
+                    </div>
+                    <div class="order-cost">
+                        ${{orders.total_price ? orders.total_price.toFixed(2)  :'0.00'}}
+                    </div>
+                </div>
+            </div>
+       </div>
+       <!--
+        set up delivery time.
+       -->
+       <ng-template #approveOrderTemplate let-modal>
+            <div class="modal-body align-item-center">
+                <div class="order-popup">
+                    <span class="header">{{orderTimeHeader ? orderTimeHeader : ''}}</span> 
+                    <span class="header-text">When will it be ready?</span>
+                    <span class="time-text" (click)="updateOrder('ready','READY')">Ready now</span>
+                    <hr>
+                    <span class="time-text" (click)="updateOrder('5','COOKING')">5 minutes</span>
+                    <hr>
+                    <span class="time-text" (click)="updateOrder('10','COOKING')">10 minutes</span>
+                    <hr>
+                    <span class="time-text" (click)="updateOrder('15','COOKING')">15 minutes</span>
+                    <hr>
+                    <input type="range"  min="1" max="60" step="1" value="1" class="slider" (input)="getOrderTimeRange($event)">
+                    <span class="time-text-disabled" *ngIf="!showRangeValue">Custom time</span>
+                    <span class="time-text"  *ngIf="showRangeValue" (click)="updateOrder(showRangeValue,'COOKING')">{{showRangeValue}} minutes</span>
+                    <hr>
+                    <span class="time-text"  (click)="modal.dismiss('Cross click')">Cancel</span>
+                    
+                </div>
+            </div>
+        </ng-template>
+
+        <ng-template #denyOrderTemplate let-modal>
+            <div class="modal-body align-item-center">
+                <div class="order-popup">
+                    <span class="header">Deny Order</span> 
+                    <span class="header-text">Are you sure you want to deny this order?</span>
+                    <span class="time-text" (click)="deleteData(); modal.dismiss('Cross click')">Deny order</span>
+                    <hr>
+                    <span class="time-text" (click)="modal.dismiss('Cross click')">Cancel</span>
+                    
+                </div>
+            </div>
+        </ng-template>
+        
+        <!-- <ng-template #completeOrderTemplate let-modal>
+            <div class="modal-body align-item-center">
+                <div class="order-popup">
+                    <span class="header">Complete Order</span> 
+                    <span class="header-text">Are you sure you want to complete this order?</span>
+                    <span class="time-text" (click)="updateOrder('complete','COMPLETED'); modal.dismiss('Cross click')">Complete order</span>
+                    <hr>
+                    <span class="time-text" (click)="modal.dismiss('Cross click')">Cancel</span>
+                    
+                </div>
+            </div>
+        </ng-template> -->
+    </div>
+</div>
+
+<img src="assets/images/orders/backward.svg" *ngIf="storeOrders?.length >= 3 && showBackward" class="backward" (click)="scrollLeft()"/>
+<img src="assets/images/orders/forward.svg" class="forward" *ngIf="storeOrders?.length >= 1 && showForward" (click)="scrollRight()" />
+<span class="forward" *ngIf="!showForward">
+    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="40" height="40" rx="20" fill="#F2F2F2"/>
+        <path d="M14.1663 20H25.833" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M19.9997 25.8327L25.833 19.9993L19.9997 14.166" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+</span>
+<span class="backward" *ngIf="showForwardDisabled">
+    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="40" height="40" rx="20" fill="#F2F2F2"/>
+        <path d="M14.1663 20H25.833" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M19.9997 25.8327L25.833 19.9993L19.9997 14.166" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+</span>
+    
+<!--
+    Empty Orders Display
+-->
+
+<div class="empty-orders" *ngIf="storeOrders?.length == 0">
+    <div *ngIf="status == '' || status == 'NEW,READY'">
+        <svg width="75" height="74" viewBox="0 0 75 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M6.41602 18.4993C6.41602 16.7965 7.79647 15.416 9.49935 15.416H21.8327C23.5356 15.416 24.916 16.7965 24.916 18.4993V55.4994C24.916 57.2022 23.5356 58.5827 21.8327 58.5827H9.49935C7.79647 58.5827 6.41602 57.2022 6.41602 55.4994V18.4993ZM12.5827 21.5827V52.416H18.7493V21.5827H12.5827Z" fill="#F2F2F2"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M28 18.4993C28 16.7965 29.3805 15.416 31.0833 15.416H43.4167C45.1195 15.416 46.5 16.7965 46.5 18.4993V55.4994C46.5 57.2022 45.1195 58.5827 43.4167 58.5827H31.0833C29.3805 58.5827 28 57.2022 28 55.4994V18.4993ZM34.1667 21.5827V52.416H40.3333V21.5827H34.1667Z" fill="#F2F2F2"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M49.584 18.4993C49.584 16.7965 50.9644 15.416 52.6673 15.416H65.0007C66.7035 15.416 68.084 16.7965 68.084 18.4993V43.166C68.084 44.8689 66.7035 46.2494 65.0007 46.2494H52.6673C50.9644 46.2494 49.584 44.8689 49.584 43.166V18.4993ZM55.7507 21.5827V40.0827H61.9173V21.5827H55.7507Z" fill="#F2F2F2"/>
+        </svg>
+        <span class="empty-order-text"> Orders will display here.</span>  
+    </div>
+    <div *ngIf="status =='NEW'">
+        <svg width="44" height="62" viewBox="0 0 44 62" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M0.666016 3.33333C0.666016 1.63046 2.04647 0.25 3.74935 0.25H40.7494C42.4522 0.25 43.8327 1.63046 43.8327 3.33333V58.8333C43.8327 60.0804 43.0815 61.2047 41.9293 61.682C40.7771 62.1592 39.4509 61.8954 38.5691 61.0136L34.5827 57.0272L30.5963 61.0136C29.3922 62.2177 27.4399 62.2177 26.2358 61.0136L22.2494 57.0272L18.2629 61.0136C17.0588 62.2177 15.1066 62.2177 13.9024 61.0136L9.91602 57.0272L5.9296 61.0136C5.04777 61.8954 3.72157 62.1592 2.56941 61.682C1.41725 61.2047 0.666016 60.0804 0.666016 58.8333V3.33333ZM6.83268 6.41667V51.3895L7.73577 50.4864C8.93989 49.2823 10.8921 49.2823 12.0963 50.4864L16.0827 54.4728L20.0691 50.4864C21.2732 49.2823 23.2255 49.2823 24.4296 50.4864L28.416 54.4728L32.4024 50.4864C32.9807 49.9082 33.7649 49.5833 34.5827 49.5833C35.4004 49.5833 36.1847 49.9082 36.7629 50.4864L37.666 51.3895V6.41667H6.83268Z" fill="#F2F2F2"/>
+        </svg>
+        <span class="empty-order-text">New orders will display here.</span>  
+    </div>
+    <div *ngIf="status == 'COOKING'">
+        <svg width="75" height="74" viewBox="0 0 75 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0)">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M9.5 24.6673C9.5 22.9644 10.8805 21.584 12.5833 21.584H61.9167C63.6195 21.584 65 22.9644 65 24.6673V52.4173C65 56.5061 63.3757 60.4274 60.4846 63.3185C57.5934 66.2097 53.6721 67.834 49.5833 67.834H24.9167C20.8279 67.834 16.9066 66.2097 14.0154 63.3185C11.1243 60.4274 9.5 56.5061 9.5 52.4173V24.6673ZM15.6667 27.7507V52.4173C15.6667 54.8706 16.6412 57.2233 18.3759 58.9581C20.1106 60.6928 22.4634 61.6673 24.9167 61.6673H49.5833C52.0366 61.6673 54.3894 60.6928 56.1241 58.9581C57.8588 57.2233 58.8333 54.8706 58.8333 52.4173V27.7507H15.6667Z" fill="#F2F2F2"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M24.9173 3.08398C26.6202 3.08398 28.0007 4.46444 28.0007 6.16732V15.4173C28.0007 17.1202 26.6202 18.5007 24.9173 18.5007C23.2144 18.5007 21.834 17.1202 21.834 15.4173V6.16732C21.834 4.46444 23.2144 3.08398 24.9173 3.08398Z" fill="#F2F2F2"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M37.2493 3.08398C38.9522 3.08398 40.3327 4.46444 40.3327 6.16732V15.4173C40.3327 17.1202 38.9522 18.5007 37.2493 18.5007C35.5465 18.5007 34.166 17.1202 34.166 15.4173V6.16732C34.166 4.46444 35.5465 3.08398 37.2493 3.08398Z" fill="#F2F2F2"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M49.5833 3.08398C51.2862 3.08398 52.6667 4.46444 52.6667 6.16732V15.4173C52.6667 17.1202 51.2862 18.5007 49.5833 18.5007C47.8805 18.5007 46.5 17.1202 46.5 15.4173V6.16732C46.5 4.46444 47.8805 3.08398 49.5833 3.08398Z" fill="#F2F2F2"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M0.25 24.6673C0.25 22.9644 1.63046 21.584 3.33333 21.584H12.5833C14.2862 21.584 15.6667 22.9644 15.6667 24.6673V37.0007C15.6667 38.7035 14.2862 40.084 12.5833 40.084C12.5141 40.084 12.3755 40.0891 12.1898 40.096C11.5792 40.1187 10.459 40.1603 9.61756 40.1002C8.27913 40.0046 6.61199 39.6677 5.03391 38.5631C1.80685 36.3041 0.25 31.84 0.25 24.6673ZM6.54427 27.7507C6.9241 31.9276 8.05306 33.1491 8.57026 33.5111C8.81463 33.6822 9.10981 33.8045 9.5 33.8793V27.7507H6.54427Z" fill="#F2F2F2"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M74.25 24.6673C74.25 22.9644 72.8695 21.584 71.1667 21.584H61.9167C60.2138 21.584 58.8333 22.9644 58.8333 24.6673V36.9499C58.8333 38.6528 60.2138 40.0332 61.9167 40.0332C61.9865 40.0332 62.1258 40.0384 62.3124 40.0453C62.9234 40.0679 64.0411 40.1092 64.8815 40.0494C66.2182 39.9544 67.8837 39.6194 69.4612 38.5197C72.6913 36.2679 74.25 31.8152 74.25 24.6673ZM67.9545 27.7507C67.5738 31.8937 66.4487 33.1026 65.9346 33.4609C65.6893 33.6319 65.3925 33.7543 65 33.8289V27.7507H67.9545Z" fill="#F2F2F2"/>
+            </g>
+            <defs>
+            <clipPath id="clip0">
+            <rect width="74" height="74" fill="white" transform="translate(0.25)"/>
+            </clipPath>
+            </defs>
+        </svg>
+        <span class="empty-order-text">Cooking orders will display here.</span>  
+    </div>
+    <div *ngIf="status == 'READY'">
+        <svg width="75" height="74" viewBox="0 0 75 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M58.8333 18.5007H52.6667C52.6667 9.99065 45.76 3.08398 37.25 3.08398C28.74 3.08398 21.8333 9.99065 21.8333 18.5007H15.6667C12.275 18.5007 9.5 21.2757 9.5 24.6673V61.6673C9.5 65.059 12.275 67.834 15.6667 67.834H58.8333C62.225 67.834 65 65.059 65 61.6673V24.6673C65 21.2757 62.225 18.5007 58.8333 18.5007ZM37.25 9.25065C42.3683 9.25065 46.5 13.3823 46.5 18.5007H28C28 13.3823 32.1317 9.25065 37.25 9.25065ZM58.8333 61.6673H15.6667V24.6673H58.8333V61.6673ZM37.25 37.0006C32.1317 37.0006 28 32.869 28 27.7507H21.8333C21.8333 36.2607 28.74 43.1673 37.25 43.1673C45.76 43.1673 52.6667 36.2607 52.6667 27.7507H46.5C46.5 32.869 42.3683 37.0006 37.25 37.0006Z" fill="#F2F2F2"/>
+        </svg>
+        <span class="empty-order-text">Ready orders will display here.</span>  
+    </div>
+</div>

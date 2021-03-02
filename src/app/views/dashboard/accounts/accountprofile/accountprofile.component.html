@@ -1,0 +1,94 @@
+
+
+<form [formGroup]="basicDetails" (ngSubmit)="onSubmit()" class="row">
+    <div *ngIf="normalMode; else editOption" class="col-md-12">
+        <div class="float-right" style="margin-bottom:48px;">
+            <button (click)="toggleEdit()" type="button" class="btn std-button std-button--primary"> <img
+                        src="assets/images/ico_edit_white.png">&nbsp; Edit store profile 
+            </button>
+        </div>
+    </div>
+    <ng-template #editOption>
+        <div class="col-md-12">
+            <div class="float-right" style="margin-bottom:52px;">
+                <button type="button" (click)="cancelEdit()" class="btn std-button std-button--transparency"
+                        style="margin-left:10px;"> Cancel </button>
+                        <button type="submit" class="btn std-button std-button--primary" style="margin-left:10px;"
+                        [disabled]="!basicDetails.dirty"><span>Save</span> </button>
+            </div>
+        </div>
+    </ng-template>
+    <div class="col-md-12">
+     <h3 class="std-heading-3 b32" *ngIf="normalMode"> {{accountArray.first_name}}</h3>
+        <h3 class="std-heading-3 b32" *ngIf="!normalMode">
+            <div class="input-container" >
+                <img src="assets/images/ico_back.png" class="input-img mt-1"
+                    (click)="cancelEdit()">
+                    <input focusOnLoad type="text" class="input-border input-palceholder" formControlName="name"
+                    placeholder="Enter a name">
+                    <span class="error-mez"
+                    *ngIf="basicDetails.controls.name.invalid && basicDetails.controls.name.touched">
+                    Name is required.</span>
+            </div>
+        </h3>
+    </div>
+    <div class="col-md-12 col-sm-12 col-lg-6 col-xs-12">
+        <div class="row">
+            <h2 class="heading">Personal details</h2>
+            <div class="col-md-12">
+                <div *ngIf="normalMode; else storeLogo">
+                    <h5 class="std-heading-5 " >  Photo </h5>
+                    <img class="profileimg" *ngIf="normalMode; else storeLogo"
+                        [src]="basicDetails.value.storeImage || 'assets/images/Area.png' " alt="">
+                    </div>
+                    <ng-template #storeLogo>
+                        <store-image formControlName="storeLogo" type="logo"></store-image>
+                    </ng-template>
+                </div>
+                <div class="col-md-12">
+                    <h5 class="std-heading-5 t32"  *ngIf="normalMode;"> Full name </h5>
+                    <div *ngIf="normalMode; else name" class="paragraph"> {{accountArray.first_name}} {{accountArray.last_name}}</div>
+                    <ng-template #name>
+                        <div >
+                            <h5 class="std-heading-5 t4 t44"> First name </h5>
+                            <input type="text" class="form-control form-input">
+                               <div *ngIf="displayError('name')" class="error-mez">
+                                   <div> Please enter first name </div>
+                               </div>
+                            <h5 class="std-heading-5 t4"> Last name </h5>
+                             <input class="form-control form-input" type="text" >
+                               <div *ngIf="displayError('name')" class="error-mez">
+                                    <div> Please enter last name </div>
+                                </div>
+                            </div>
+            
+                        
+                    </ng-template>
+                </div>
+                <div class="col-md-12">
+                    <h5 class="std-heading-5 t40"> Phone  </h5>
+                    <div *ngIf="normalMode; else phoneNumber" class="paragraph"> {{accountArray.mobile_number}} </div>
+                    <ng-template #phoneNumber>
+                        <input [ngClass]="{ 'is-invalid': displayError('phoneNumber') }" class="form-control form-input"
+                        formControlName="phoneNumber" placeholder="e.g. +61 07 3123 4567" minlength="0" maxlength="20"
+                        (keypress)="keyPress($event)">
+                        <div *ngIf="displayError('phoneNumber')" class="error-mez">
+                            <div> Please enter a phone number </div>
+                        </div>
+                    </ng-template>
+                </div>
+                <div class="col-md-12">
+                    <h5 class="std-heading-5 t40"> Role </h5>
+                    <div *ngIf="normalMode else names" class="paragraph"> {{'Owner'}} </div>
+                    <ng-template #names>
+                        <input [ngClass]="{ 'is-invalid': displayError('names') }" class="form-control form-input"
+                        type="text" formControlName="names">
+                        <div *ngIf="displayError('role')" class="error-mez">
+                            <div> Please enter Role</div>
+                        </div>
+                        
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+    </form>

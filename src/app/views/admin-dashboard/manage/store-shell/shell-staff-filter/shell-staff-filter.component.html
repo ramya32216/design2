@@ -1,0 +1,3 @@
+<select [disabled]="!staff" name="" id="" (change)="handleChange($event.target.value)" class="custom-select form-control form-input form-input--select-input">
+     <option *ngFor="let s of staff" [value]="s.store_partner_id" [selected]="s.store_partner_id === selectedStaff">{{s.name}}</option>    
+</select>

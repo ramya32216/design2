@@ -1,0 +1,118 @@
+<div class="std-heading-5 mb-1" style="margin-top:32px;">Days <b class="m-star">*</b></div>
+<div class="menu-creator__days mb-2">
+    <div class="custom-checkbox mr-3">
+        <input type="checkbox" id="day_mon" value="monday"
+            (change)="addRemvDay($event.target.value, $event.target.checked)">
+        <label class="custom-checkbox__label std-heading-4" for="day_mon">Mon</label>
+    </div>
+    <div class="custom-checkbox mr-3">
+        <input type="checkbox" id="day_tue" value="tuesday"
+            (change)="addRemvDay($event.target.value, $event.target.checked)">
+        <label class="custom-checkbox__label std-heading-4" for="day_tue">Tue</label>
+    </div>
+    <div class="custom-checkbox mr-3">
+        <input type="checkbox" id="day_wed" value="wednesday"
+            (change)="addRemvDay($event.target.value, $event.target.checked)">
+        <label class="custom-checkbox__label std-heading-4" for="day_wed">Wed</label>
+    </div>
+    <div class="custom-checkbox mr-3">
+        <input type="checkbox" id="day_thu" value="thursday"
+            (change)="addRemvDay($event.target.value, $event.target.checked)">
+        <label class="custom-checkbox__label std-heading-4" for="day_thu">Thu</label>
+    </div>
+    <div class="custom-checkbox mr-3">
+        <input type="checkbox" id="day_fri" value="friday"
+            (change)="addRemvDay($event.target.value, $event.target.checked)">
+        <label class="custom-checkbox__label std-heading-4" for="day_fri">Fri</label>
+    </div>
+    <div class="custom-checkbox mr-3">
+        <input type="checkbox" id="day_sat" value="saturday"
+            (change)="addRemvDay($event.target.value, $event.target.checked)">
+        <label class="custom-checkbox__label std-heading-4" for="day_sat">Sat</label>
+    </div>
+    <div class="custom-checkbox mr-3">
+        <input type="checkbox" id="day_sun" value="sunday"
+            (change)="addRemvDay($event.target.value, $event.target.checked)">
+        <label class="custom-checkbox__label std-heading-4" for="day_sun">Sun</label>
+    </div>
+    <div class="error-mez" *ngIf="selectedDays.length == 0 && daysTouched">Please select at least one day.</div>
+</div>
+<div class="row" [formGroup]="timing">
+    <div class="col-md-3">
+        <div class="std-heading-5 mb-1">Start time <b class="m-star">*</b></div>
+        <select class="custom-select form-input" formControlName="startTime" (change)="timingOnChange($event)">
+            <!-- <option> Select </option> -->
+            <option value="24 Hours"> 24 Hours </option>
+            <option *ngFor="let t of time" [value]="t">{{ format24hr ? fmt12to24(t) : t }}</option>
+        </select>
+        <!-- <ng-template #startTimeTemp>
+            <select class="custom-select form-input" formControlName="startTime">
+                <option> Select </option>
+                <option *ngFor="let t of time24" [value]="t">{{ t }}</option>
+            </select>
+        </ng-template> -->
+    </div>
+    <div class="col-md-3">
+        <div class="std-heading-5 mb-1">End time <b class="m-star">*</b></div>
+        <select class="custom-select form-input" formControlName="endTime" (change)="timingOnChange($event)">
+            <!-- <option> Select </option> -->
+            <option value="24 Hours"> 24 Hours </option>
+            <option *ngFor="let t of time" [value]="t">{{ format24hr ? fmt12to24(t) : t }}</option>
+        </select>
+    </div>
+    <div class="col-md-3" style="padding-top: 28px;">
+        <button class="btn btn-disable primary-color"
+            [ngStyle]="{cursor: (timing.valid && selectedDays.length > 0 ? 'pointer':'not-allowed')}" id="active_button"
+            (click)="addAvailability()" [disabled]="!daysTouched"><img src="assets/images/ico_add.png">&nbsp;&nbsp;Add
+            time</button>
+    </div>
+    <!-- <div class="col-md-3" style="padding-top: 28px;">
+        <button class="btn std-button std-button--transparency" (click)="toggleFormat()">{{format24hr? '12Hr' : '24Hr'}}</button>
+    </div> -->
+    <div class="col-md-12">
+        <div class="error-mez"
+            *ngIf="timing.controls.startTime.value !== 'Select' && timing.controls.endTime.value !== 'Select' && timing.controls.startTime.value == timing.controls.endTime.value && timing.controls.startTime.value !== '12:00AM'">
+            Please enter a valid time range. Start and end time can't be the same unless they're both 12:00 am (to
+            designate that you're open 24 hours).</div>
+        <div class="error-mez" *ngIf="timing.errors">
+            <div *ngIf="timing.errors.noSelection"> Start and end time are required </div>
+        </div>
+    </div>
+
+</div>
+
+<ng-container #headingSlot></ng-container>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-border table-colors">
+            <tbody>
+                <tr class="text-capitalize" *ngFor="let a of _availability; let i = index">
+                    <td><b>{{a.day}}</b></td>
+                    <td class="text-uppercase"
+                        *ngIf="a.startTime === '12:00AM' && a.endTime === '12:00AM'; else timeRange">
+                        24 Hours
+                    </td>
+                    <ng-template #timeRange>
+                        <td class="text-uppercase">
+                            {{format24hr ? fmt12to24(a.startTime) : a.startTime}}&nbsp;-&nbsp;{{format24hr? fmt12to24(a.endTime) : a.endTime}}
+                        </td>
+                    </ng-template>
+                    <td>
+                        <div class="form-check">
+                            <input (ngModelChange)="dirty = true; touched = true" [(ngModel)]="a.markedAsClose"
+                                type="checkbox" class="form-check-input checkbox-box">
+                            <label class="form-check-label check-label-text">&nbsp;Mark as closed </label>
+                        </div>
+                    </td>
+                    <td valign="middle" style="color:#353FA8;cursor: pointer;" (click)="deleteAvailability(i)">
+                        <img src="assets/images/ico_delete.png">&nbsp; Delete
+                    </td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- <div>{{fmt24to12(timing.controls.startTime.value)}}</div> -->

@@ -1,0 +1,47 @@
+<div style="display: flex; flex-direction: column; height: 100vh;">
+    <div class="sidebar-heading hide-div text-center"style="outline: none;cursor: pointer;height:56px;">
+      <img [routerLink]="['/dashboard']"  title="Dashboard" style="width: 169px;height:32px;outline:none;" src="assets/svg/Logo.svg"> 
+      <img class="mt-1" [src]= "layoutService.sideMenuVisible ? close_image : menu_image" (click)="layoutService.toggleSideBar()" style="float: left;">
+   </div>
+   <div id="wrapper">
+      <div *ngIf="layoutService.sideMenuVisible"
+         [ngStyle]="{'position':layoutService.isMobile ? 'absolute' : 'relative' }" class="sidebar"
+         id="sidebar-wrapper">
+         <app-side-nav-bar></app-side-nav-bar>
+      </div>
+      <div style="flex-grow: 1; overflow-y: auto;">
+         <div class="container-fluid">
+            <div class="main-body">
+               <router-outlet></router-outlet>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+
+<!--
+   New Order Notification
+-->
+<!-- <div class="new-order-notification">
+   <div class="d-flex justify-content-between">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+         <path d="M18 6L6 18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+         <path d="M6 6L18 18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+        
+      <div>
+         <button class="btn std-button std-button--success">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+               <path d="M20 6L9 17L4 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+               &nbsp;&nbsp;Accept all
+         </button>
+      </div>
+   </div>
+   <div class="new-order-template">
+     <span class="new-order-text">New orders</span><br><br>
+     <span class="new-order-count">3</span>
+     <span class="new-order-view-text">Tap to view</span>
+   </div>
+</div> -->

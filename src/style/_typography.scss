@@ -1,0 +1,97 @@
+// all headers styles
+.std-heading-1 {
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 40px;
+    line-height: 48px;
+    color: var(--color-boldlevelcolor);
+}
+.std-heading-2 {
+    font-size: 30px;
+}
+.std-heading-3 {
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    color: var(--color-boldlevelcolor);
+}
+.std-heading-4 {
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 24px;
+    color: var(--color-boldlevelcolor);
+}
+.std-heading-5 {
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--color-boldlevelcolor);
+    &--popheader {
+        color:var(--color-background);
+        padding-top: 3px;
+    }
+}
+.table-colors {
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--color-boldlevelcolor);
+}
+
+.tabs-menu {
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: var(--color-boldlevelcolor);
+    &:hover {
+        color:var(--color-typography-tertiary);
+    }
+}
+.paragraph {
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--color-boldlevelcolor);
+    &--small {
+        font-size: 14px;
+        line-height: 20px; 
+    }
+}
+
+.color-primary {
+    color: var(--color-primary);
+}
+.content-label {
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--color-primary);
+}
+.checkbox-box {
+    margin-top: 5px;
+    width: 16px;
+    height: 16px;
+}
+.check-label-text {
+    text-transform: none;
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+}
