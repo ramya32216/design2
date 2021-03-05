@@ -4,8 +4,10 @@ import {LandingpageComponent} from './views/dashboard/landingpage/landingpage.co
 import { ForgotPasswordComponent } from './views/forgot-password/forgot-password.component';
 import { SignupEmailRedirectComponent } from './views/signup-email-redirect/signup-email-redirect.component';
 import { MemberStoreInvitationComponent } from './views/member-store-invitation/member-store-invitation.component';
+import { LandingpagetwoComponent } from './views/dashboard/landingpagetwo/landingpagetwo.component';
+import { LandingpagethreeComponent } from './views/dashboard/landingpagethree/landingpagethree.component';
 // import { PasswordResetComponent } from './views/password-reset/password-reset.component';
-
+import{LandingpagefourComponent} from './views/dashboard/landingpagefour/landingpagefour.component';
 const routes: Routes = [
   { path: 'login', loadChildren: () => import('./views/login/login.module').then(m => m.LoginModule)},
   { path: 'signup', loadChildren:() => import('./views/signup/signup.module').then(m => m.SignupModule)},
@@ -13,7 +15,10 @@ const routes: Routes = [
   { path: 'confirm-singup', loadChildren:() => import('./views/confirmation-signup/confirmation-signup.module').then(m => m.ConfirmationSignupModule)},
   { path: 'resend-email', loadChildren:() => import('./views/resend-email/resend-email.module').then(m => m.ResendEmailModule) },
   { path: 'forgot-password', component: ForgotPasswordComponent},
-  { path: 'page', component: LandingpageComponent},
+  { path: 'page1', component: LandingpageComponent},
+  {path:'page2', component: LandingpagetwoComponent},
+  {path:'page3', component: LandingpagethreeComponent},
+  {path:'page4', component:LandingpagefourComponent},
   {
     path: 'account',
     loadChildren: () => import('src/app/views/dashboard/accounts/account.module').then(m => m.AccountsModule)

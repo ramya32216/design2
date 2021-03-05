@@ -1,0 +1,26 @@
+.comman{
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: 700;
+}
+.main .container .row{
+ 
+   .col-md-6{
+ 
+
+    .std-32{
+        @extend .comman;
+        font-size: 32px;
+        line-height: 40px;
+        padding-top:96px;
+        width:93%;
+       }
+    .form-group .label-inputs{padding-top:24px;}
+    .std-button--primary{margin-top:8px}
+    .std-heading-4{padding-top:80px}
+    .t24{padding-top:8px;}
+    .transparentbtn{margin-right:16px}
+
+
+ }
+}

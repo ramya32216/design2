@@ -1,0 +1,35 @@
+.comman{
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: 700;
+}
+
+
+.main {
+ 
+    .std-32{
+        @extend .comman;
+        font-size: 32px;
+        line-height: 40px;
+        padding-top:96px;
+       }
+       .std-14{
+           @extend .comman;
+           font-size: 14px;
+           line-height: 20px;
+           padding-top: 24px;
+           margin-bottom:4px;
+
+       }
+       .std-button{margin-top:24px;}
+       .std-button--transparency{margin-right:16px;}
+       .row .form-group {
+         
+       .field-icon{    position: absolute;
+        cursor: pointer;
+        top: 214px;
+        right: 35px;
+        z-index: 1;
+        color: #B3B3B3;}
+       }
+    }

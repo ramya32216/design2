@@ -10,6 +10,8 @@ import { SideNavBarModule } from '../side-nav-bar/side-nav-bar.module';
 import { TelephoneInputModule } from 'src/app/_modules/telephone-input/telephone-input.module'
 import { LandingpageComponent } from './landingpage/landingpage.component';
 import { ReactiveFormsModule,FormsModule} from '@angular/forms';
+import { LandingpagethreeComponent } from './landingpagethree/landingpagethree.component';
+import { LandingpagefourComponent } from './landingpagefour/landingpagefour.component';
 const routes: Routes = [
   {
     path: '',
@@ -48,7 +50,7 @@ const routes: Routes = [
 const dashboardRouting = RouterModule.forChild(routes);
 
 @NgModule({
-  declarations: [DashboardComponent, DashboardContainerComponent, LandingpageComponent],
+  declarations: [DashboardComponent, DashboardContainerComponent, LandingpageComponent, LandingpagethreeComponent, LandingpagefourComponent],
   imports: [
     CommonModule,
     dashboardRouting,
