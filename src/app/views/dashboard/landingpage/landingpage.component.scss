@@ -1,6 +1,6 @@
 // .btns-navbar:active{background-color: #141974;}
 // .btns-navbar:hover{background-color: #141974;}
-// .btns-n{background-color: #141974;}
+ .btns-n{background-color: #141974;}
 .comman{
     font-family: DM Sans;
     font-style: normal;
@@ -11,21 +11,7 @@
         padding: #{$var};
     }
 }
-//extra code
-.clearfix {
-    &:before, &:after { content: " "; display: table; }
-    &:after { clear: both; }
-  }
-  
-  .relative{position: relative;}
-  .absolute{position: absolute;}
- 
-  
- 
-  .bottom-dotted{border-bottom-width: 4px; border-bottom-style: dotted;}
-  .border-color-light-gray{ border-color: #ccc; }
-  //extra
- 
+
 
   
 .img-one{
