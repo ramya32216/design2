@@ -1,0 +1,70 @@
+<nav class="nav-bars">
+    <div class="row">
+        <div class="col-auto mr-auto"><img src="assets/svg/Logo.svg"></div>
+        
+    </div>
+</nav>
+<div class="main">
+    <div class="container container-one ">
+        <div class="row">
+            <div class="col-md-4"></div>
+
+            <div class="col-md-7">
+                <p class="std-32 ht56">One more more thing...</p>
+                <div class="head-2">
+                    <p class="std-heading-4 ">How would you like to accept online orders?</p>
+                    <p class=" head-3">Select 1 or more</p>
+                    
+                   <div class="space">
+                       <img class="image" [src]="!ishow ? 'assets/svg/Frame 291.svg' :'assets/svg/Frame1.svg'" (click)="gold()"/>
+                       <div class="image1"><p class="std-heading-5">Use your smartphone (BYO)</p>
+                        <p class="table-colors">3.3% per order</p></div>
+                  </div>
+                  <div [hidden]="!ishow" class="top16">
+                    <p class="label-inputs">What BYO do you currently use?</p>
+                    <select  name="select"  class="select">
+                        <option value="value1">Select</option>
+                        <!-- <option [value]="o" *ngFor="let o of options">{{o}}</option> -->
+                    </select>
+                </div>
+                   <div class="space">
+                       <img  class="image" [src]="!ishow1?'assets/svg/Frame 292.svg':'assets/svg/Frame1.svg'" (click)="gold1()"/>
+                       <div class="image1">
+                        <p class="std-heading-5">Use your tablet (BYO)</p>
+                        <p class="table-colors">3.3% per order</p></div>
+                   </div>
+                   <div [hidden]="!ishow1" class="top16">
+                    <p class="label-inputs">What POS do you currently use?</p>
+                    <select  name="select"  class="select">
+                        <option value="value1">Select</option>
+                        <!-- <option [value]="o" *ngFor="let o of options">{{o}}</option> -->
+                    </select>
+                </div>
+                   <div class="space">
+                    <img class="image"  [src]="!ishow2?'assets/svg/Frame 293.svg':'assets/svg/Frame1.svg'" (click)="gold2()"/>
+                    <div class="image1">
+                        <p class="std-heading-5">Integrate with your point of sale (POS)</p>
+                        <p class="table-colors">3.3% per order</p>
+    
+                    </div>
+                   
+                    </div>
+                    <div [hidden]="!ishow2" class="top16">
+                        <p class="label-inputs">What POS do you currently use?</p>
+                        <select  name="select"  class="select">
+                            <option value="value1">Select</option>
+                            <!-- <option [value]="o" *ngFor="let o of options">{{o}}</option> -->
+                        </select>
+                    </div>
+
+                    <div class="head-2">
+                        <button class="btn std-button std-button--transparency">Back</button>
+                        <button class="btn std-button std-button--primary" routerLink="/page8">Continue</button>
+    
+                    </div>
+                </div>
+                </div>
+          
+       </div>
+    </div>
+</div>

@@ -1,0 +1,163 @@
+<nav class="nav-bars">
+    <div class="row">
+        <div class="col-auto mr-auto"><img src="assets/svg/Logo.svg"></div>
+        
+    </div>
+</nav>
+<div class="main">
+    <div class="container container-one ">
+        <div class="row">
+            <div class="col-md-4"></div>
+
+            <div class="col-md-6">
+                <p class="std-32 ht56">Accessories</p>
+                <p class="std-heading-4 head-2">Would you like to order accessories?</p>
+                <p class=" head-3">Select 1 or more</p>
+                
+               <div class="space">
+                   <img class="image" [src]="!ishow?'assets/svg/Frame 24.svg':'assets/svg/Frame 31.svg'" (click)="gold()"/>
+                   <div class="image1" ><p class="std-heading-5">Table QR code stickers</p>
+                    <p class="table-colors">Free</p></div>
+               
+                </div>
+                 <div [hidden]="!ishow" class="select1">
+                    <p  class="label-inputs">Select a range of table numbers</p>
+                    <select  name="select"  class="select">
+                        <option value="value1">Select</option>
+                        <!-- <option [value]="o" *ngFor="let o of options">{{o}}</option> -->
+                    </select>
+
+                </div>
+               <div class="space">
+                   <img  class="image" [src]="!ishow1?'assets/svg/Frame 27.svg':'assets/svg/Frame 33.svg'" (click)="gold1()"/>
+                   <div class="image1">
+                    <p class="std-heading-5">Takeaway bags</p>
+                    <p class="table-colors">$29.95 per 100</p>
+
+                   </div>
+         
+                </div>
+                <div [hidden]="!ishow1" class="select1">
+                    <p  class="label-inputs">How many takeaway bags?</p>
+                    <select  name="select"  class="select">
+                        <option value="value1">100</option>
+                        <!-- <option [value]="o" *ngFor="let o of options">{{o}}</option> -->
+                    </select>
+
+                </div>
+               <div class="space">
+                <img class="image" [src]="!ishow2?'assets/svg/Frame 26.svg':'assets/svg/Frame 32.svg'" (click)="gold2()"/>
+                <div class="image1">
+                    <p class="std-heading-5">A-frame ordering signage</p>
+                    <p class="table-colors">$79.00 each</p>
+
+                </div>
+               
+                </div>
+                <div [hidden]="!ishow2" class="select1">
+                    <p  class="label-inputs">How many A-frames?</p>
+                    <select  name="select"  class="select">
+                        <option value="value1">1</option>
+                        <!-- <option [value]="o" *ngFor="let o of options">{{o}}</option> -->
+                    </select>
+
+                </div>
+                <div class="space">
+                    <img class="image" [src]="!ishow3?'assets/svg/Frame 25.svg':'assets/svg/Frame 34.svg'"(click)="gold3()"/>
+                    <div class="image1">
+                        <p class="std-heading-5">Tablet holder for countertop</p>
+                        <p class="table-colors">$99.00 each</p>
+    
+                    </div>
+                   
+                    </div>
+                    <div [hidden]="!ishow3" class="select1">
+                        <p  class="label-inputs">A-frame ordering signage</p>
+                        <select  name="select"  class="select-one">
+                            <option value="value1">1</option>
+                            <!-- <option [value]="o" *ngFor="let o of options">{{o}}</option> -->
+                        </select>
+    
+                    </div>
+                    <div class="bg-gray">
+                        <p class="std-heading-4  one">Order summary</p>
+                        <p class="label-inputs two">Selected items above will appear here</p>
+                        <div class=" com">
+                            <p class="std-heading-5 three">Amount due</p>
+                            <p class="std-heading-3 four">$0.00</p>
+
+                        </div>
+                        
+                    </div>
+                    <div class="add1" [hidden]="!ishow">
+                        <p class="std-heading-4 shipadrr">Shipping address</p>
+                        <input type="text" class="form-control form-input" >
+                        <p class="label-inputs name ">Name</p>
+                        <input type="text" class="form-control form-input" >
+                        <p class="label-inputs name ">Street address</p>
+                        <input type="text" class="form-control form-input">
+                        <p class="label-inputs name ">Suburb</p>
+                        <input type="text" class="form-control form-input">
+                        <p class="label-inputs name ">City</p>
+                        <input type="text" class="form-control form-input" >
+                        <p class="label-inputs name " >Postcode</p>
+                        <input type="text" class="form-control form-input Australia"  >
+                        <p class="label-inputs name ">County</p>
+                        <div >
+                            <select  name="select"  class="select-aus aus">
+                                <option value="value1" class="aus">Australia</option>
+                                <!-- <option [value]="o" *ngFor="let o of options">{{o}}</option> -->
+                            </select>
+                        </div>
+                       
+                       
+
+                    </div>
+                    <div class="add1" [hidden]="!ishow1">
+                        <p class="std-heading-4 shipadrr">Payment</p>
+                        <input type="text" class="form-control form-input" >
+                        <p class="label-inputs name ">Name on card</p>
+                        <input type="text" class="form-control form-input" >
+                        <p class="label-inputs name ">Billing address</p>
+                        <input type="text" class="form-control form-input">
+                        <p class="label-inputs name ">Billing county</p>
+                        <select  name="select"  class="selects aus">
+                            <option value="value1" class="aus">Australia</option>
+                            <!-- <option [value]="o" *ngFor="let o of options">{{o}}</option> -->
+                        </select>
+                        <p class="label-inputs name ">Card number</p>
+                        <input type="text" class="form-control form-input" placeholder="0000 0000 0000 0000" >
+                        <div class="flex"> 
+                            <p class="label-inputs name " >Expiry date</p>
+                            <p class="label-inputs name ">CVV/CID</p>
+
+                        </div>
+                      
+                        
+                       <div  class="flex">
+                        <select  name="select"  class=" aus  date">
+                            <option value="value1" class="aus">MM</option>
+                            <!-- <option [value]="o" *ngFor="let o of options">{{o}}</option> -->
+                        </select>
+                        <select  name="select"  class=" aus date">
+                            <option value="value1" class="aus ">YYYY</option>
+                            <!-- <option [value]="o" *ngFor="let o of options">{{o}}</option> -->
+                        </select>
+                      
+                        <input type="text" class="form-control form-input"  >
+                           
+                       </div>
+                      
+
+                    </div>
+
+                <div class="head-4">
+                    <button class="btn std-button std-button--transparency">Back</button>
+                    <button class="btn std-button std-button--transparency">Skip this step</button>
+                    <button class="btn std-button std-button--tertiary">Place order</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

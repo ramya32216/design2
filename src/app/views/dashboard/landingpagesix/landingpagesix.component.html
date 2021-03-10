@@ -1,0 +1,53 @@
+<nav class="nav-bars">
+    <div class="row">
+        <div class="col-auto mr-auto"><img src="assets/svg/Logo.svg"></div>
+        
+    </div>
+</nav>
+<div class="main">
+    <div class="container container-one ">
+        <div class="row">
+            <div class="col-md-4"></div>
+
+            <div class="col-md-7">
+                <p class="std-32 ht56">Add your menu</p>
+                <p class="std-heading-4 head-2">Please provide a copy of your menu as a PDF, image or website link.</p>
+                <p class="head-2 head-3">PDF or Image</p>
+                <div class="form-group form-group--null">
+                    <!-- <button class="btn std-button std-button--transparency select-file" (click)="fileInput.click()"><img src="assets/images/ico_upload.png" style="margin-right:5px;"> Choose files</button> -->
+                    <div class="select-file  nofile" (click)="fileInput.click()" title="Upload file"  style="border-color:none !important;float: left;">
+                        <img src="assets/images/ico_upload.png" style="margin-right:5px;"> Choose files 
+                    </div>
+                    <div class="fnt-14 " *ngIf="selectedFile && selectedFileName && !legalFile">
+                        {{selectedFileName}} 
+                    </div>
+                    <div class="fnt-14 " *ngIf="legalFile">
+                        File Uploaded. 
+                    </div>
+                    <div class="fnt-14 " *ngIf="!selectedFile && !selectedFileName  && !legalFile">
+                        No file selected
+                    </div>                              
+                    
+                <div *ngIf="checkownershipSubmit && (!legalFile && !selectedFile)" class="error-mez">
+                    Please upload a Certification of registration
+                </div>
+            </div>
+                <!-- <button class="btn std-button std-button--transparency " (click)="fileInput.click()"><img src="assets/images/ico_upload.png" style="margin-right:5px;"> Choose files</button> -->
+                <input style="display: none" type="file" (change)="onFileChanged($event)" #fileInput >
+                <p class="paragraph--small or">or</p>
+               
+                <form>
+                    <div class="form-group form-group--margin t244" >
+                        <label class="label-inputs"> Menu website   </label>
+                        <input type="text" class="form-control form-input" placeholder="e.g. https://mywebsite.com">
+                    </div>
+                </form>
+                <div class="head-2">
+                    <button class="btn std-button std-button--transparency">Back</button>
+                    <button class="btn std-button std-button--primary" [routerLink]="['/page7']">Continue</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

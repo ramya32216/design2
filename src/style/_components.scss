@@ -18,6 +18,13 @@
     &--primary:hover {
         color: var(--color-background);
     }
+    &--tertiary {
+        color: var( --color-typography-tertiary);
+        background: #fafafa;
+    }
+    &--tertiary:hover {
+        color: var( --color-typography-tertiary);
+    }
     &--transparency {
         color: var(--color-primary);
         background: #fafafa;

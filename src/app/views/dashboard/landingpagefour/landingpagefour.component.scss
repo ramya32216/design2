@@ -4,7 +4,10 @@
     font-weight: 700;
 }
 .main .container .row{
- 
+    .top{
+        margin-top:40px;
+        padding-top:56px
+    }
    .col-md-6{
  
 
@@ -12,15 +15,18 @@
         @extend .comman;
         font-size: 32px;
         line-height: 40px;
-        padding-top:96px;
+      //  padding-top:96px;
+      margin-bottom: 40px;
         width:93%;
        }
-    .form-group .label-inputs{padding-top:24px;}
+   
     .std-button--primary{margin-top:8px}
-    .std-heading-4{padding-top:80px}
-    .t24{padding-top:8px;}
-    .transparentbtn{margin-right:16px}
-
-
+    .std-heading-4{margin-top:80px;margin-bottom: 40px;}
+    .t24{    margin-top: 24px;}
+    .transparentbtn{margin-right:16px;}
+  .std-button{padding:10px 16px}
+.form-input{
+    padding: 8px 16px 8px 16px;
+}
  }
 }

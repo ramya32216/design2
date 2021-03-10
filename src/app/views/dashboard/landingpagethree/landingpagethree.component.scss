@@ -6,18 +6,21 @@
 
 
 .main {
- 
+ .top{
+     margin-top: 40px;
+     padding-top: 56px;
+ }
     .std-32{
         @extend .comman;
         font-size: 32px;
         line-height: 40px;
-        padding-top:96px;
+        margin-bottom: 40px;
        }
        .std-14{
            @extend .comman;
            font-size: 14px;
            line-height: 20px;
-           padding-top: 24px;
+         //  padding-top: 24px;
            margin-bottom:4px;
 
        }
@@ -27,7 +30,7 @@
          
        .field-icon{    position: absolute;
         cursor: pointer;
-        top: 214px;
+        top: 176px;
         right: 35px;
         z-index: 1;
         color: #B3B3B3;}

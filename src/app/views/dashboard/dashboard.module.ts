@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DashboardComponent } from './dashboard.component'
+import { DashboardComponent } from './dashboard.component';
+import { TimeAvailabilityModule } from 'src/app/_modules/time-availability/time-availability.module';
 import { Routes, RouterModule } from '@angular/router';
 import { StoreMenuResolver } from 'src/app/_guards/store-menu-resolver';
 import { DashboardContainerComponent } from './dashboard-container/dashboard-container.component';
@@ -12,6 +13,10 @@ import { LandingpageComponent } from './landingpage/landingpage.component';
 import { ReactiveFormsModule,FormsModule} from '@angular/forms';
 import { LandingpagethreeComponent } from './landingpagethree/landingpagethree.component';
 import { LandingpagefourComponent } from './landingpagefour/landingpagefour.component';
+import { LandingpagefiveComponent } from './landingpagefive/landingpagefive.component';
+import { LandingpagesixComponent } from './landingpagesix/landingpagesix.component';
+import { LandingpagesevenComponent } from './landingpageseven/landingpageseven.component';
+import { LandingpageeightComponent } from './landingpageeight/landingpageeight.component';
 const routes: Routes = [
   {
     path: '',
@@ -50,14 +55,15 @@ const routes: Routes = [
 const dashboardRouting = RouterModule.forChild(routes);
 
 @NgModule({
-  declarations: [DashboardComponent, DashboardContainerComponent, LandingpageComponent, LandingpagethreeComponent, LandingpagefourComponent],
+  declarations: [DashboardComponent, DashboardContainerComponent, LandingpageComponent, LandingpagethreeComponent, LandingpagefourComponent, LandingpagefiveComponent, LandingpagesixComponent, LandingpagesevenComponent, LandingpageeightComponent],
   imports: [
     CommonModule,
     dashboardRouting,
     SideNavBarModule,
     ReactiveFormsModule,
     FormsModule,
-    TelephoneInputModule
+    TelephoneInputModule,
+    TimeAvailabilityModule
   ],
   providers: [StoreMenuResolver]
 })

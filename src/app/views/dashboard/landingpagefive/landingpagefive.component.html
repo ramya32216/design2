@@ -1,0 +1,58 @@
+<nav class="nav-bars">
+    <div class="row">
+        <div class="col-auto mr-auto"><img src="assets/svg/Logo.svg"></div>
+        
+    </div>
+</nav>
+<div class="main">
+    <div class="container container-one ">
+        <div class="row">
+            <div class="col-md-4"></div>
+
+            <div class="col-md-8">
+                <p class="std-32 ht56">About your restaurant</p>
+                <form>
+                    <div class="form-group form-group--margin" >
+                        <label class="label-inputs"> Restaurant name  <b class="m-star">*</b> </label>
+                        <input type="text" class="form-control form-input" placeholder="The Lamb Shop Spring Hill">
+                    </div>
+                    <div class="form-group form-group--margin">
+                        <label class="label-inputs"> Store address <b class="m-star">*</b> </label>
+                        <input ngx-google-places-autocomplete  
+                            class="form-control form-input" formControlName="storeAddress"
+                           placeholder="e.g. 100 Main street, Sampletown, Qld 4000" />
+                       
+                    </div>
+                    <div class="form-group form-group--margin">
+                        <label class="label-inputs"> Mobile<b class="m-star">*</b> </label>
+                        <input class="form-control form-input" placeholder="e.g. +61 07 3123 4567" formControlName="phoneNumber"
+                            minlength="0" maxlength="20" 
+                          >
+                      
+                    </div>
+                    <div class="form-group form-group--margin">
+                        <div class="row">
+                            <div class="col-md-12">
+                                 <label class="label-inputs"> Opening hours </label>
+                    <div style="cursor: pointer;" class="edit"
+                        title=" {{storeOpeningHours.length == 0 ? 'Add opening hours' : 'Edit opening hours'}}">
+                        <div class="content-label">
+                            {{storeOpeningHours.length == 0 ? 'Add' : 'Edit'}} opening hours 
+                        <img  [src]="storeOpeningHours.length == 0 ? add_image : edit_image">
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <app-time-availability-summary [availabilities]="storeOpeningHours">
+                    </app-time-availability-summary>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+           
+        </div>
+    </div>
+</div>

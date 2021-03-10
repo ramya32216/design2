@@ -8,6 +8,10 @@ import { LandingpagetwoComponent } from './views/dashboard/landingpagetwo/landin
 import { LandingpagethreeComponent } from './views/dashboard/landingpagethree/landingpagethree.component';
 // import { PasswordResetComponent } from './views/password-reset/password-reset.component';
 import{LandingpagefourComponent} from './views/dashboard/landingpagefour/landingpagefour.component';
+import{LandingpagefiveComponent} from './views/dashboard/landingpagefive/landingpagefive.component';
+import { LandingpagesixComponent } from './views/dashboard/landingpagesix/landingpagesix.component';
+import { LandingpagesevenComponent } from './views/dashboard/landingpageseven/landingpageseven.component';
+import {LandingpageeightComponent} from './views/dashboard/landingpageeight/landingpageeight.component';
 const routes: Routes = [
   { path: 'login', loadChildren: () => import('./views/login/login.module').then(m => m.LoginModule)},
   { path: 'signup', loadChildren:() => import('./views/signup/signup.module').then(m => m.SignupModule)},
@@ -19,6 +23,10 @@ const routes: Routes = [
   {path:'page2', component: LandingpagetwoComponent},
   {path:'page3', component: LandingpagethreeComponent},
   {path:'page4', component:LandingpagefourComponent},
+  {path:'page5', component:LandingpagefiveComponent},
+  {path:'page6',component:LandingpagesixComponent},
+  {path:'page7',component:LandingpagesevenComponent},
+  {path:'page8', component:LandingpageeightComponent},
   {
     path: 'account',
     loadChildren: () => import('src/app/views/dashboard/accounts/account.module').then(m => m.AccountsModule)

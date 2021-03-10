@@ -1,0 +1,185 @@
+.comman{
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: 700;
+}
+.main{
+    .container-one{
+        .std-32{
+            @extend .comman;
+            font-size: 32px;
+            line-height: 40px;
+        }
+        
+        .ht56{
+            margin-top: 56px;
+        }
+        .head-2{
+            margin-top: 40px;
+        }
+        .head-3{
+            @extend .comman;
+            font-size: 14px;
+            line-height: 20px;
+            margin-bottom: 24px;
+            margin-top: 24px;
+
+        }
+        .std-button--transparency{
+            margin-right: 16px;
+            padding:10px 16px;
+        }
+        .std-heading-5{
+            margin-bottom: 4px;
+        }
+        .image{
+            margin-bottom: 16px;
+            // height: 120px;
+            // width: 120px;
+            cursor: pointer;
+            justify-content: space-between;
+            margin-right: 24px;
+        }
+      
+        .right{
+            float: right;
+        }
+        .space{
+          //  justify-content: space-between;
+            display: flex;
+            padding:16px;
+        }
+        .image1{
+            margin-top: 34px;
+        }
+        .bg-gray{
+            background-color: #fafafa;
+            padding-left:32px;
+            padding-right: 32px;
+           margin-top:80px;
+        }
+      
+        .one{
+            padding-top: 32px;
+            margin-bottom: 24px;
+        }
+        .com{
+            padding-top:60px;
+            padding-bottom: 50px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .four{
+            color: #b3b3b3;
+        }
+        .head-4{
+             margin-top: 80px;
+        }
+        .coms{
+            background-color: var(--color-background-secondary);
+            font-weight: 700;border:0;outline:0;padding: 8px 16px 8px 16px;height: 40px;
+            width: 200px;
+            left: 0px;
+            top: 24px;
+            border-radius: 0px;
+        }
+        .flex{
+            display: flex;
+            justify-content: space-between;
+        }
+        .select{
+            @extend .coms;
+            margin-bottom: 48px;
+                    
+        }
+        .select-one{
+            @extend .coms;
+            margin-bottom: 26px;
+        }
+        .selects{
+            @extend .coms;
+            margin-bottom: 16px;
+            border-radius: 8px;
+          width:498px
+        }
+        .select1{
+            margin:0px 0px 0px 0px;
+            padding:16px 16px 32px 16px;
+        }
+        .select-aus{
+            @extend .coms;
+            margin-bottom: 0px;
+            border-radius: 8px;
+           // margin-right:8px;
+           width:498px
+        }
+        .date{
+            @extend .coms;
+            margin-bottom: 16px;
+            border-radius: 8px;
+            margin-right:8px;
+        }
+        .add1{
+            margin-top:80px;
+            .form-input{
+                border-radius:8px !important;
+            }
+            .shipadrr{
+                margin-bottom: 24px;
+            }
+            .name{
+                margin-top:16px;
+            }
+            .Australia{
+                height: 40px;
+                width: 200px;
+
+
+            }
+            .aus option{
+                color:#b3b3b3;
+            }
+           
+        }
+    }
+}
+@media only screen and (max-width: 600px) {
+    .main .container-one .select-aus{
+        width:200px
+  }
+  .main .container-one  .selects{
+    width:200px
+}
+   }
+@media only screen and (min-width: 600px) {
+    .main .container-one  .select-aus{
+        width:200px
+  }
+  .main .container-one  .selects{
+    width:200px
+}
+   }
+@media only screen and (min-width: 992px) {
+    .main .container-one  .select-aus{
+        width:385px;
+  }
+  .main .container-one  .selects{
+    width: 385px;
+}
+}
+@media only screen and (min-width: 1200px) {
+    .main .container-one .select-aus{
+          width:460px;
+    }
+    .main .container-one  .selects{
+        width:460px
+    }
+  }
+  @media only screen and (min-width: 1400px) {
+    .main .container-one   .select-aus{
+          width:498px;
+    }
+    .main .container-one  .selects{
+        width:498px
+    }
+  }
