@@ -1,0 +1,39 @@
+.comman{
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: 700;
+}
+.main{
+    .container{
+        .std-32{
+            @extend .comman;
+            font-size: 32px;
+            line-height: 40px;
+            margin-top: 56px;
+            margin-bottom: 75px;
+        }
+        .head-4{
+            margin-top:20px;
+            margin-bottom: 72px;
+        }
+        .t72{
+            margin-top:72px;
+        }
+        td{
+          box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.1);
+          padding: 16px ;
+        }
+        .mb24{
+            margin-bottom:24px;
+        }
+        .mt40{
+            margin-top:40px;
+        }
+        .padding{
+            padding:36px 16px 50px 16px;
+        }
+       .std-button{
+           padding:10px 16px;
+       }
+    }
+    }

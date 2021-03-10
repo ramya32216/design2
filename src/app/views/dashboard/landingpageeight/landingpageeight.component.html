@@ -29,6 +29,7 @@
 
                 </div>
                <div class="space">
+                
                    <img  class="image" [src]="!ishow1?'assets/svg/Frame 27.svg':'assets/svg/Frame 33.svg'" (click)="gold1()"/>
                    <div class="image1">
                     <p class="std-heading-5">Takeaway bags</p>
@@ -46,7 +47,28 @@
 
                 </div>
                <div class="space">
-                <img class="image" [src]="!ishow2?'assets/svg/Frame 26.svg':'assets/svg/Frame 32.svg'" (click)="gold2()"/>
+                <div *ngIf="!ishow2" (click)="gold2()" class="image">
+                    <svg  width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="120" height="120" fill="#fafafa"/>
+                        <path d="M48 39H72L63 81H39L48 39Z" stroke="#353fa8" stroke-width="2" stroke-linejoin="round"/>
+                        <path d="M42.6162 78.5L50.4057 41.5H68.3838L60.5943 78.5H42.6162Z" fill="#353fa8" stroke="#353fa8"/>
+                        <path d="M72 39L79 81" stroke="#353fa8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M64.5 75H78" stroke="#353fa8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+
+                    </svg>
+                </div>
+                <div *ngIf="ishow2" (click)="gold2()"  class="image">
+                    <svg  width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="120" height="120" fill="#353fa8"/>
+                        <path d="M48 39H72L63 81H39L48 39Z" stroke="white" stroke-width="2" stroke-linejoin="round"/>
+                        <path d="M42.6162 78.5L50.4057 41.5H68.3838L60.5943 78.5H42.6162Z" fill="white" stroke="white"/>
+                        <path d="M72 39L79 81" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M64.5 75H78" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+
+                    </svg>
+                </div>
+               
+                <!-- <img class="image" [src]="!ishow2?'assets/svg/Frame 26.svg':'assets/svg/Frame 32.svg'" (click)="gold2()"/> -->
                 <div class="image1">
                     <p class="std-heading-5">A-frame ordering signage</p>
                     <p class="table-colors">$79.00 each</p>
@@ -150,11 +172,11 @@
                       
 
                     </div>
-
+                    
                 <div class="head-4">
                     <button class="btn std-button std-button--transparency">Back</button>
                     <button class="btn std-button std-button--transparency">Skip this step</button>
-                    <button class="btn std-button std-button--tertiary">Place order</button>
+                    <button class="btn std-button std-button--primary">Place order</button>
 
                 </div>
             </div>

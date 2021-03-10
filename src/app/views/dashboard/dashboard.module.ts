@@ -17,6 +17,8 @@ import { LandingpagefiveComponent } from './landingpagefive/landingpagefive.comp
 import { LandingpagesixComponent } from './landingpagesix/landingpagesix.component';
 import { LandingpagesevenComponent } from './landingpageseven/landingpageseven.component';
 import { LandingpageeightComponent } from './landingpageeight/landingpageeight.component';
+import { LandingpagenineComponent } from './landingpagenine/landingpagenine.component';
+import { LandingpagetenComponent } from './landingpageten/landingpageten.component';
 const routes: Routes = [
   {
     path: '',
@@ -55,7 +57,7 @@ const routes: Routes = [
 const dashboardRouting = RouterModule.forChild(routes);
 
 @NgModule({
-  declarations: [DashboardComponent, DashboardContainerComponent, LandingpageComponent, LandingpagethreeComponent, LandingpagefourComponent, LandingpagefiveComponent, LandingpagesixComponent, LandingpagesevenComponent, LandingpageeightComponent],
+  declarations: [DashboardComponent, DashboardContainerComponent, LandingpageComponent, LandingpagethreeComponent, LandingpagefourComponent, LandingpagefiveComponent, LandingpagesixComponent, LandingpagesevenComponent, LandingpageeightComponent, LandingpagenineComponent, LandingpagetenComponent],
   imports: [
     CommonModule,
     dashboardRouting,

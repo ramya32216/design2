@@ -16,7 +16,25 @@
                     <p class=" head-3">Select 1 or more</p>
                     
                    <div class="space">
-                       <img class="image" [src]="!ishow ? 'assets/svg/Frame 291.svg' :'assets/svg/Frame1.svg'" (click)="gold()"/>
+                    <div *ngIf="!ishow" (click)="gold()" class="image">
+                        <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="120" height="120" fill="#FAFAFA"/>
+                            <rect x="48" y="39" width="24" height="42" rx="4" stroke="#353FA8" stroke-width="2"/>
+                            <rect x="50.5" y="41.5" width="19" height="37" rx="1.5" stroke="#353FA8"/>
+                            <rect x="58.5" y="73.5" width="3" height="3" rx="1.5" stroke="#353FA8"/>
+                        </svg>
+                            
+                    </div>
+                    <div *ngIf="ishow" (click)="gold()"  class="image">
+                        <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="120" height="120" fill="#353FA8"/>
+                            <rect x="48" y="39" width="24" height="42" rx="4" stroke="#FAFAFA" stroke-width="2"/>
+                            <rect x="50.5" y="41.5" width="19" height="37" rx="1.5" stroke="#FAFAFA"/>
+                            <rect x="58.5" y="73.5" width="3" height="3" rx="1.5" stroke="#FAFAFA"/>
+                        </svg>
+                            
+                    </div>
+                       <!-- <img class="image" [src]="!ishow ? 'assets/svg/Frame 291.svg' :'assets/svg/Frame1.svg'" (click)="gold()"/> -->
                        <div class="image1"><p class="std-heading-5">Use your smartphone (BYO)</p>
                         <p class="table-colors">3.3% per order</p></div>
                   </div>
@@ -28,7 +46,25 @@
                     </select>
                 </div>
                    <div class="space">
-                       <img  class="image" [src]="!ishow1?'assets/svg/Frame 292.svg':'assets/svg/Frame1.svg'" (click)="gold1()"/>
+                    <div *ngIf="!ishow1" (click)="gold1()" class="image">
+                        <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="120" height="120" fill="#FAFAFA"/>
+                            <rect x="39" y="44" width="42" height="32" rx="4" stroke="#353FA8" stroke-width="2"/>
+                            <rect x="42.5" y="47.5" width="35" height="25" rx="1.5" stroke="#353FA8"/>
+                            </svg>
+                            
+                            
+                    </div>
+                    <div *ngIf="ishow1" (click)="gold1()"  class="image">
+                        <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="120" height="120" fill="#353FA8"/>
+                            <rect x="39" y="44" width="42" height="32" rx="4" stroke="#FAFAFA" stroke-width="2"/>
+                            <rect x="42.5" y="47.5" width="35" height="25" rx="1.5" stroke="#FAFAFA"/>
+                            </svg>
+                            
+                            
+                    </div>
+                       <!-- <img  class="image" [src]="!ishow1?'assets/svg/Frame 292.svg':'assets/svg/Frame1.svg'" (click)="gold1()"/> -->
                        <div class="image1">
                         <p class="std-heading-5">Use your tablet (BYO)</p>
                         <p class="table-colors">3.3% per order</p></div>

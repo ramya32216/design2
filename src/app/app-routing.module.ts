@@ -12,6 +12,8 @@ import{LandingpagefiveComponent} from './views/dashboard/landingpagefive/landing
 import { LandingpagesixComponent } from './views/dashboard/landingpagesix/landingpagesix.component';
 import { LandingpagesevenComponent } from './views/dashboard/landingpageseven/landingpageseven.component';
 import {LandingpageeightComponent} from './views/dashboard/landingpageeight/landingpageeight.component';
+import { LandingpagenineComponent } from './views/dashboard/landingpagenine/landingpagenine.component';
+import { LandingpagetenComponent } from './views/dashboard/landingpageten/landingpageten.component';
 const routes: Routes = [
   { path: 'login', loadChildren: () => import('./views/login/login.module').then(m => m.LoginModule)},
   { path: 'signup', loadChildren:() => import('./views/signup/signup.module').then(m => m.SignupModule)},
@@ -27,6 +29,8 @@ const routes: Routes = [
   {path:'page6',component:LandingpagesixComponent},
   {path:'page7',component:LandingpagesevenComponent},
   {path:'page8', component:LandingpageeightComponent},
+  {path:'page9',component:LandingpagenineComponent},
+  {path:'page10',component:LandingpagetenComponent},
   {
     path: 'account',
     loadChildren: () => import('src/app/views/dashboard/accounts/account.module').then(m => m.AccountsModule)
